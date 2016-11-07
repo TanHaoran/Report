@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 @Component({
-  selector: 'my-app',
-  template: '<h1>表单上报系统</h1>'
+	moduleId: module.id,
+	selector: 'my-app',
+	templateUrl: 'app.component.html',
+	styleUrls: [ 'app.component.css']
 })
+
 export class AppComponent { }

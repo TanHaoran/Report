@@ -1,0 +1,18 @@
+<div class="menu">
+	<ul class="heroes">
+		<li *ngFor="let form of forms" [class.selected]="form === selectedForm" (click)="onSelect(form)">
+			<span class="badge">{{form.index}}</span>{{form.name}}
+		</li>
+	</ul>
+</div>	
+
+<div class="content">
+	<div *ngIf="selectedForm">
+		<h2>你选择的是：{{selectedForm.name}}</h2>
+		<table>
+			<tr>
+				<td *ngFor="let t of selectedForm.titles">t</td>
+			</tr>
+		</table>
+	</div>
+</div>
