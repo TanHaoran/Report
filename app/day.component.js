@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var form_service_1 = require('./form.service');
+// 每日汇报页面
 var DayComponent = (function () {
     function DayComponent(router, formService) {
         this.router = router;
@@ -18,10 +19,11 @@ var DayComponent = (function () {
     }
     DayComponent.prototype.ngOnInit = function () {
         var _this = this;
+        // 初始化所有报表
         this.formService.getForms()
             .then(function (forms) { return _this.forms = forms; });
     };
-    // 当选择一个左侧的类型
+    // 当选择一个左侧报表的类型
     DayComponent.prototype.onSelect = function (form) {
         this.selectedForm = form;
     };

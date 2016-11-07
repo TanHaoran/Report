@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var day_component_1 = require('./day.component');
 var month_component_1 = require('./month.component');
+// 路由类
 var routes = [
     { path: '', redirectTo: '/day', pathMatch: 'full' },
     { path: 'day', component: day_component_1.DayComponent },

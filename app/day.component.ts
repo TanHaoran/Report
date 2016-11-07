@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
-
 import { Form } from './form';
 import { FormService } from './form.service';
 
+
+// 每日汇报页面
 @Component({
 	moduleId: module.id,
 	selector: 'thr-day',
@@ -13,7 +14,6 @@ import { FormService } from './form.service';
 	styleUrls: [ 'day.component.css']
 })
 
-// 每日汇报页面
 export class DayComponent implements OnInit { 
 	
 	// 所有报表
@@ -22,17 +22,17 @@ export class DayComponent implements OnInit {
 	// 当前选择的报表
 	selectedForm: Form;
 
-
 	constructor(
 		private router: Router,
 		private formService: FormService) { }
 
 	ngOnInit(): void {
+		// 初始化所有报表
 		this.formService.getForms()
 		.then(forms => this.forms = forms);
 	}
 
-	// 当选择一个左侧的类型
+	// 当选择一个左侧报表的类型
 	onSelect(form: Form): void {
 		this.selectedForm = form;
 	}
