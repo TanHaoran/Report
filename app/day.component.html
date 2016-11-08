@@ -7,12 +7,24 @@
 </div>	
 
 <div class="content">
-	<div *ngIf="selectedForm">
-		<h2>你选择的是：{{selectedForm.name}}</h2>
-		<table>
-			<tr>
-				<td *ngFor="let t of selectedForm.titles">t</td>
-			</tr>
-		</table>
+	<div class="day-form" >
+		<div *ngIf="selectedForm">
+			<div class="form-title"><h2>{{selectedForm.name}}</h2></div>
+			<div class="form-line"></div>
+			<table>
+				<tr class="form-row" *ngFor="let title of selectedForm.titles">
+					<td class="form-col-title">{{title}}</td>
+					<td>
+						<input class="form-control" type="text" name="">
+					</td>
+				</tr>
+				<tr class="form-row">
+					<td></td>
+					<td>
+						<button class="btn btn-default" type="button">提交</button>
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>

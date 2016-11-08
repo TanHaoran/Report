@@ -1,6 +1,6 @@
 .selected {
   background-color: #CFD8DC !important;
-  color: white;
+  color: #8764b8;
 }
 .heroes {
   margin: 0 0 2em 0;
@@ -15,12 +15,12 @@
   background-color: #EEE;
   margin: .5em;
   padding: .3em 0;
-  height: 1.6em;
+  height: 2.6em;
   border-radius: 4px;
 }
 .heroes li.selected:hover {
   background-color: #BBD8DC !important;
-  color: white;
+  color: #8764b8;
 }
 .heroes li:hover {
   color: #607D8B;
@@ -36,26 +36,50 @@
   font-size: small;
   color: white;
   padding: 0.8em 0.7em 0 0.7em;
-  background-color: #607D8B;
+  background-color: #8764b8;
   line-height: 1em;
   position: relative;
   left: -1px;
   top: -4px;
-  height: 1.8em;
+  height: 2.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
 
-
 .menu {
-  background-color: #ff0;
-  width: 15em;
+  width: 250px;
   float: left;
 }
 
 .content {
-  background-color: #0ff;
+  margin-left: 250px;
+}
+
+.day-form {
   width: 1000px;
   margin: 0px auto;
-  height: 500px;
+}
+
+.form-title {
+  text-align: left;
+}
+
+.form-line {
+  height: 1px;
+  background-color: #8764b8;
+  margin: 20px 0px;
+}
+
+.form-row {
+  height: 60px;
+}
+
+.form-col-title {
+  width: 250px;
+  text-align: right;
+  padding-right: 20px
+}
+
+.form-col-content {
+
 }

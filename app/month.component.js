@@ -9,16 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var form_service_1 = require('./form.service');
 // 每月汇总页面
 var MonthComponent = (function () {
-    function MonthComponent() {
+    function MonthComponent(router, formService) {
+        this.router = router;
+        this.formService = formService;
     }
+    MonthComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        // 初始化所有报表
+        this.formService.getForms()
+            .then(function (forms) { return _this.forms = forms; });
+    };
+    // 当选择一个左侧报表的类型
+    MonthComponent.prototype.onSelect = function (form) {
+        this.selectedForm = form;
+    };
     MonthComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            template: "\n\t\t<div>\u6C47\u603B\u9875\u9762</div>\n\t"
+            templateUrl: 'month.component.html',
+            styleUrls: [
+                'day.component.css',
+                'month.component.css'
+            ]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router, form_service_1.FormService])
     ], MonthComponent);
     return MonthComponent;
 }());

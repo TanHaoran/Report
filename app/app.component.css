@@ -9,6 +9,7 @@ h2 {
 	padding-top: 0;
 }
 nav a {
+	font-size: 20px;
 	padding: 5px 10px;
 	text-decoration: none;
 	margin-top: 10px;
@@ -24,12 +25,17 @@ nav a:hover {
 	background-color: #CFD8DC;
 }
 nav a.active {
-	color: #039be5;
+	color: #8764b8;
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
 }
 
 .title-bar {
-	height: 150px;
-	line-height: 150px;
+	height: 120px;
+	line-height: 120px;
 	width: 100%;
 	text-align: center;
 	background-color: #8764b8;
@@ -37,8 +43,16 @@ nav a.active {
 }
 
 .title-bar h1 {
+	text-align: center;
+	line-height: 120px;
 	color: #fff;
 	font-size: 50px;
 }
+
+.main {
+	padding: 10px;
+}
+
+
 
 

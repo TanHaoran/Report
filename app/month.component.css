@@ -1,0 +1,28 @@
+.month-content {
+	margin-left: 250px;
+}
+
+.month-form {	
+	margin: 20px;
+	border: 1px solid #8764b8;
+}
+
+td {
+}
+
+.month-form-row {
+	height: 60px;
+}
+
+.month-title {
+	text-align: center;
+	font-size: 18px;
+}
+
+.month-form-number-col {
+	min-width: 50px;
+	padding: 4px;
+	text-align: center;
+}
+
+
