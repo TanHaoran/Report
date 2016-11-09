@@ -8,24 +8,24 @@ h2 {
 	margin-top: 0;
 	padding-top: 0;
 }
+
 nav a {
+	padding: 0px 10px;
 	font-size: 20px;
-	padding: 5px 10px;
 	text-decoration: none;
-	margin-top: 10px;
 	display: inline-block;
-	background-color: #eee;
-	border-radius: 4px;
+	background-color: #8764b8;
 }
+
 nav a:visited, a:link {
-	color: #607D8B;
+	color: #ccc;
 }
 nav a:hover {
-	color: #039be5;
-	background-color: #CFD8DC;
+	color: #fff;
+	background-color: #9A7DC3;
 }
 nav a.active {
-	color: #8764b8;
+	color: #fff;
 }
 
 * {
@@ -34,25 +34,23 @@ nav a.active {
 }
 
 .title-bar {
-	height: 120px;
-	line-height: 120px;
+	padding: 0px 25px;
+	height: 60px;
+	line-height: 60px;
 	width: 100%;
-	text-align: center;
 	background-color: #8764b8;
 	color: #fff;
 }
 
-.title-bar h1 {
-	text-align: center;
-	line-height: 120px;
+.title-bar-title {
+	line-height: 60px;
+	height: 60px;	
 	color: #fff;
-	font-size: 50px;
+	font-size: 24px;
+	float: left;
+	margin-right: 60px;
 }
 
 .main {
 	padding: 10px;
 }
-
-
-
-

@@ -1,7 +1,7 @@
 <div class="menu">
 	<ul class="heroes">
 		<li *ngFor="let form of forms" [class.selected]="form === selectedForm" (click)="onSelect(form)">
-			<span class="badge">{{form.index}}</span>{{form.name}}
+			<span class="badge">{{form.index}}</span>{{form.name}}汇总
 		</li>
 	</ul>
 </div>	
