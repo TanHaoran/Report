@@ -15,7 +15,6 @@ var app_component_1 = require('./app.component');
 var day_component_1 = require('./day.component');
 var month_component_1 = require('./month.component');
 var login_component_1 = require('./login.component');
-var homepage_component_1 = require('./homepage.component');
 var form_service_1 = require('./form.service');
 var app_routing_module_1 = require('./app-routing.module');
 var AppModule = (function () {
@@ -32,8 +31,7 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 day_component_1.DayComponent,
                 month_component_1.MonthComponent,
-                login_component_1.LoginComponent,
-                homepage_component_1.HomepageComponent
+                login_component_1.LoginComponent
             ],
             providers: [form_service_1.FormService],
             bootstrap: [app_component_1.AppComponent]

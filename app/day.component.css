@@ -13,9 +13,9 @@
   position: relative;
   left: 0;
   background-color: #EEE;
-  margin: 1em;
+  margin: .5em;
   padding: .3em 0;
-  height: 3.2em;
+  height: 2.6em;
   border-radius: 4px;
 }
 .heroes li.selected:hover {
@@ -25,7 +25,7 @@
 .heroes li:hover {
   color: #607D8B;
   background-color: #DDD;
-  left: 0.3em;
+  left: .1em;
 }
 .heroes .text {
   position: relative;
@@ -35,13 +35,13 @@
   display: inline-block;
   font-size: small;
   color: white;
-  padding: 1em 1em 1em 1em;
+  padding: 0.8em 0.7em 0 0.7em;
   background-color: #8764b8;
-  line-height: 1.2em;
+  line-height: 1em;
   position: relative;
   left: -1px;
   top: -4px;
-  height: 3.2em;
+  height: 2.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }

@@ -12,13 +12,11 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var day_component_1 = require('./day.component');
 var month_component_1 = require('./month.component');
-var homepage_component_1 = require('./homepage.component');
 // 路由类
 var routes = [
-    { path: '', redirectTo: '/homepage', pathMatch: 'full' },
+    { path: '', redirectTo: '/day', pathMatch: 'full' },
     { path: 'day', component: day_component_1.DayComponent },
-    { path: 'month', component: month_component_1.MonthComponent },
-    { path: 'homepage', component: homepage_component_1.HomepageComponent }
+    { path: 'month', component: month_component_1.MonthComponent }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

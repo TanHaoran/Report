@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { DayComponent } from './day.component';
 import { MonthComponent } from './month.component';
 import { LoginComponent } from './login.component';
-import { HomepageComponent } from './homepage.component';
 
 import { FormService }   from './form.service';
 
@@ -23,8 +22,7 @@ import { AppRoutingModule }  from './app-routing.module';
 		AppComponent,
 		DayComponent,
 		MonthComponent,
-		LoginComponent,
-		HomepageComponent
+		LoginComponent
 	],
 	providers: [ FormService ],
 	bootstrap: [ AppComponent ]

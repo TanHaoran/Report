@@ -3,14 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DayComponent } from './day.component';
 import { MonthComponent } from './month.component';
-import { HomepageComponent } from './homepage.component';
 
 // 路由类
 const routes: Routes = [
-	{ path: '', redirectTo: '/homepage', pathMatch: 'full' },
+	{ path: '', redirectTo: '/day', pathMatch: 'full' },
 	{ path: 'day', component: DayComponent },
-	{ path: 'month', component: MonthComponent },
-	{ path: 'homepage', component: HomepageComponent}
+	{ path: 'month', component: MonthComponent }
 ];
 
 @NgModule({
