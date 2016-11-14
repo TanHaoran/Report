@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Form } from './entity/form';
-import { FormService } from './form.service';
+import { FormService } from './service/form.service';
 
 
 // 首页页面

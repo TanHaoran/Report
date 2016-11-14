@@ -35,7 +35,8 @@ var AppModule = (function () {
                 month_component_1.MonthComponent,
                 login_component_1.LoginComponent,
                 report_component_1.ReportComponent,
-                homepage_component_1.HomepageComponent
+                homepage_component_1.HomepageComponent,
+                login_component_1.LoginComponent
             ],
             providers: [form_service_1.FormService],
             bootstrap: [app_component_1.AppComponent]
