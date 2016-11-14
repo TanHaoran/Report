@@ -1,0 +1,35 @@
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+.login-title {
+	height: 160px;
+	line-height: 160px;
+	color: #fff;
+	background-color: #8764b8;
+	font-size: 40px;
+	text-align: center;
+	font-weight: 100;
+}
+
+.clear-fix {
+	clear: both;
+}
+
+.login-container {
+	width: 400px;
+	padding-top: 20px;
+}
+
+.login-container h1 {
+	font-size: 26px;
+}
+
+.login-container label {
+	font-size: 18px;
+	font-weight: 500;
+}

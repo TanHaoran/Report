@@ -10,15 +10,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var day_component_1 = require('./day.component');
-var month_component_1 = require('./month.component');
-var homepage_component_1 = require('./homepage.component');
+var day_component_1 = require('./day/day.component');
+var month_component_1 = require('./month/month.component');
+var report_component_1 = require('./report.component');
+var login_component_1 = require('./login/login.component');
+var homepage_component_1 = require('./homepage/homepage.component');
 // 路由类
 var routes = [
-    { path: '', redirectTo: '/homepage', pathMatch: 'full' },
-    { path: 'day', component: day_component_1.DayComponent },
-    { path: 'month', component: month_component_1.MonthComponent },
-    { path: 'homepage', component: homepage_component_1.HomepageComponent }
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: 'login', component: login_component_1.LoginComponent },
+    {
+        path: 'report',
+        component: report_component_1.ReportComponent,
+        children: [
+            {
+                path: '',
+                redirectTo: '/report/homepage',
+                pathMatch: 'full'
+            },
+            {
+                path: 'homepage',
+                component: homepage_component_1.HomepageComponent
+            },
+            {
+                path: 'day',
+                component: day_component_1.DayComponent
+            },
+            {
+                path: 'month',
+                component: month_component_1.MonthComponent
+            }]
+    }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

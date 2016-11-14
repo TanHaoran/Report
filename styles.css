@@ -15,4 +15,16 @@ h2, h3 {
 * {
 	padding: 0px;
 	margin: 0px;
+	font-family: "微软雅黑", Cambria, "Hoefler Text", "Liberation Serif", Times,
+	"Times New Roman", serif;
+}
+
+.clear_fix {
+	clear: both;
+}
+
+.report-line {
+	height: 1px;
+	background-color: #8764b8;
+	margin: 20px 0px;
 }

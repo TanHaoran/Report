@@ -12,11 +12,12 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
-var day_component_1 = require('./day.component');
-var month_component_1 = require('./month.component');
-var login_component_1 = require('./login.component');
-var homepage_component_1 = require('./homepage.component');
-var form_service_1 = require('./form.service');
+var day_component_1 = require('./day/day.component');
+var month_component_1 = require('./month/month.component');
+var login_component_1 = require('./login/login.component');
+var report_component_1 = require('./report.component');
+var homepage_component_1 = require('./homepage/homepage.component');
+var form_service_1 = require('./service/form.service');
 var app_routing_module_1 = require('./app-routing.module');
 var AppModule = (function () {
     function AppModule() {
@@ -33,6 +34,7 @@ var AppModule = (function () {
                 day_component_1.DayComponent,
                 month_component_1.MonthComponent,
                 login_component_1.LoginComponent,
+                report_component_1.ReportComponent,
                 homepage_component_1.HomepageComponent
             ],
             providers: [form_service_1.FormService],

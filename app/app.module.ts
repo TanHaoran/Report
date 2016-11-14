@@ -4,12 +4,13 @@ import { FormsModule }   from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import { DayComponent } from './day.component';
-import { MonthComponent } from './month.component';
-import { LoginComponent } from './login.component';
-import { HomepageComponent } from './homepage.component';
+import { DayComponent } from './day/day.component';
+import { MonthComponent } from './month/month.component';
+import { LoginComponent } from './login/login.component';
+import { ReportComponent } from './report.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
-import { FormService }   from './form.service';
+import { FormService }   from './service/form.service';
 
 import { AppRoutingModule }  from './app-routing.module';
 
@@ -24,6 +25,7 @@ import { AppRoutingModule }  from './app-routing.module';
 		DayComponent,
 		MonthComponent,
 		LoginComponent,
+		ReportComponent,
 		HomepageComponent
 	],
 	providers: [ FormService ],
