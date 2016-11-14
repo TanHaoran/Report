@@ -1,14 +1,14 @@
 <div class="menu">
 	<ul class="heroes">
 		<li *ngFor="let form of forms" [class.selected]="form === selectedForm" (click)="onSelect(form)">
-			<span class="badge">{{form.index}}</span>{{form.name}}
+			<span class="badge">{{form.index}}</span>{{form.name}}汇总
 		</li>
 	</ul>
 </div>	
 
 <div class="month-content">
 	<div *ngIf="selectedForm">
-		<div class="month-title">{{selectedForm.name}}</div>
+		<div class="month-title">{{selectedForm.name}}汇总</div>
 		<form class="month-form">
 			<tr class="month-form-row">
 				<td class="month-form-number-col">序号</td>
