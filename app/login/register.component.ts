@@ -9,18 +9,18 @@ import { User }    from '../entity/User';
 @Component({
 	moduleId: module.id,
 	selector: 'thr-login',
-	templateUrl: 'login.component.html',
+	templateUrl: 'register.component.html',
 	styleUrls: [ 'login.component.css']
 })
 
-export class LoginComponent {
-
+export class RegisterComponent {
+	
 	active = true;
 	submitted = false;
 
+
 	model = new User(0, '', '', '');
-
-
+	offices = ['神经1病区'，'神经2病区', '儿科1病区', '儿科2病区'];
 
 	constructor(
 		private router: Router
@@ -28,14 +28,9 @@ export class LoginComponent {
 
 	}
 
-	// 登录
+	// 注册
 	onSubmit() {
 		this.submitted = true; 
-		this.router.navigateByUrl('/report');
+		this.router.navigateByUrl('/login');
 	}
-
-	
-	// TODO: Remove this when we're done
-	get diagnostic() { return JSON.stringify(this.model); }
-
 }

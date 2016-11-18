@@ -1,9 +1,9 @@
 .ng-valid[required], .ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
+	border-left: 5px solid #42A948; /* green */
 }
 
 .ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
+	border-left: 5px solid #a94442; /* red */
 }
 
 .login-title {
@@ -32,4 +32,13 @@
 .login-container label {
 	font-size: 18px;
 	font-weight: 500;
+}
+
+.register {
+	float: right;
+	cursor: pointer;
+}
+
+.register:hover {
+	color: #8764b8;
 }

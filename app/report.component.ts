@@ -11,7 +11,7 @@ import { FormService } from './service/form.service';
 	moduleId: module.id,
 	selector: 'thr-report',
 	templateUrl: 'report.component.html',
-	styleUrls: [ 'app.component.css' ]
+	styleUrls: [ 'app.component.css', 'report.component.css' ]
 })
 
 export class ReportComponent { 

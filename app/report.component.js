@@ -18,7 +18,7 @@ var ReportComponent = (function () {
             moduleId: module.id,
             selector: 'thr-report',
             templateUrl: 'report.component.html',
-            styleUrls: ['app.component.css']
+            styleUrls: ['app.component.css', 'report.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], ReportComponent);

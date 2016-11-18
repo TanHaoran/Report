@@ -1,7 +1,7 @@
 <div class="login-title">上报系统</div>
 
 <div class="container login-container">
-	<h1>登录</h1>
+	<h1>注册</h1>
 	<div class="report-line"></div>
 	<form  *ngIf="active" (ngSubmit)="onSubmit()" #reportForm="ngForm">
 
@@ -25,11 +25,16 @@
 			</div>
 		</div>
 
-		<!--登录-->
-		<button type="submit" class="btn btn-default"  [disabled]="!reportForm.form.valid">登录</button> 
+		<!--科室-->
+		<div class="form-group">
+			<label for="office">选择科室</label>
+			<select class="form-control" id="office" required [(ngModel)]="model.office" name="office">
+				<option *ngFor="let o of offices" [value]="o">{{o}}</option>
+			</select>
+		</div>
 
 		<!--注册-->
-		<div class="register" routerLink="/register" >注册</div>  
+		<button type="submit" class="btn btn-default"  [disabled]="!reportForm.form.valid">注册</button> 
 
 	</form>
 </div>

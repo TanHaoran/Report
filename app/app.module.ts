@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { DayComponent } from './day/day.component';
 import { MonthComponent } from './month/month.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './login/register.component';
 import { ReportComponent } from './report.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
@@ -27,6 +28,7 @@ import { AppRoutingModule }  from './app-routing.module';
 		DayComponent,
 		MonthComponent,
 		LoginComponent,
+		RegisterComponent,
 		ReportComponent,
 		HomepageComponent,
 		LoginComponent

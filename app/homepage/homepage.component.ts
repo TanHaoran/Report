@@ -10,11 +10,16 @@ import { FormService } from '../service/form.service';
 @Component({
 	moduleId: module.id,
 	selector: 'thr-homepage',
-	template: '这里是首页'
+	template: `
+		<div>
+			<p>Hello ~ !</p>
+			<p>今天是： {{today | date:'fullDate'}}</p>
+		</div>
+	`
 })
 
 export class HomepageComponent { 
-	
-	
+
+	today: number = Date.now();	
 }
 

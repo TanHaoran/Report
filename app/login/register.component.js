@@ -12,34 +12,29 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var User_1 = require('../entity/User');
 // 登陆页面
-var LoginComponent = (function () {
-    function LoginComponent(router) {
+var RegisterComponent = (function () {
+    function RegisterComponent(router) {
         this.router = router;
         this.active = true;
         this.submitted = false;
         this.model = new User_1.User(0, '', '', '');
+        this.offices = ['神经1病区', '神经2病区', '儿科1病区', '儿科2病区'];
     }
-    // 登录
-    LoginComponent.prototype.onSubmit = function () {
+    // 注册
+    RegisterComponent.prototype.onSubmit = function () {
         this.submitted = true;
-        this.router.navigateByUrl('/report');
+        this.router.navigateByUrl('/login');
     };
-    Object.defineProperty(LoginComponent.prototype, "diagnostic", {
-        // TODO: Remove this when we're done
-        get: function () { return JSON.stringify(this.model); },
-        enumerable: true,
-        configurable: true
-    });
-    LoginComponent = __decorate([
+    RegisterComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'thr-login',
-            templateUrl: 'login.component.html',
+            templateUrl: 'register.component.html',
             styleUrls: ['login.component.css']
         }), 
         __metadata('design:paramtypes', [router_1.Router])
-    ], LoginComponent);
-    return LoginComponent;
+    ], RegisterComponent);
+    return RegisterComponent;
 }());
-exports.LoginComponent = LoginComponent;
-//# sourceMappingURL=login.component.js.map
+exports.RegisterComponent = RegisterComponent;
+//# sourceMappingURL=register.component.js.map

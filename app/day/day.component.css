@@ -1,83 +1,83 @@
 .selected {
-  background-color: #CFD8DC !important;
-  color: #8764b8;
+	background-color: #CFD8DC !important;
+	color: #8764b8;
 }
 .heroes {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
+	margin: 0 0 2em 0;
+	list-style-type: none;
+	padding: 0;
+	width: 15em;
 }
 .heroes li {
-  cursor: pointer;
-  position: relative;
-  left: 0;
-  background-color: #EEE;
-  margin: .5em;
-  padding: .3em 0;
-  height: 2.6em;
-  border-radius: 4px;
+	cursor: pointer;
+	position: relative;
+	left: 0;
+	background-color: #EEE;
+	margin: .5em;
+	padding: .3em 0;
+	height: 2.6em;
+	border-radius: 4px;
 }
 .heroes li.selected:hover {
-  background-color: #BBD8DC !important;
-  color: #8764b8;
+	background-color: #BBD8DC !important;
+	color: #8764b8;
 }
 .heroes li:hover {
-  color: #607D8B;
-  background-color: #DDD;
-  left: .1em;
+	color: #607D8B;
+	background-color: #DDD;
+	left: .5em;
 }
 .heroes .text {
-  position: relative;
-  top: -3px;
+	position: relative;
+	top: -3px;
 }
 .heroes .badge {
-  display: inline-block;
-  font-size: small;
-  color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color: #8764b8;
-  line-height: 1em;
-  position: relative;
-  left: -1px;
-  top: -4px;
-  height: 2.8em;
-  margin-right: .8em;
-  border-radius: 4px 0 0 4px;
+	display: inline-block;
+	font-size: small;
+	color: white;
+	padding: 0.8em 0.7em 0 0.7em;
+	background-color: #8764b8;
+	line-height: 1em;
+	position: relative;
+	left: -1px;
+	top: -4px;
+	height: 2.8em;
+	margin-right: .8em;
+	border-radius: 4px 0 0 4px;
 }
 
 .menu {
-  width: 250px;
-  float: left;
+	width: 250px;
+	float: left;
 }
 
 .content {
-  margin-left: 250px;
+	margin-left: 250px;
 }
 
 .day-form {
-  width: 1000px;
-  margin: 0px auto;
+	width: 1000px;
+	margin: 0px auto;
 }
 
 .form-title {
-  text-align: left;
+	text-align: left;
 }
 
 .form-line {
-  height: 1px;
-  background-color: #8764b8;
-  margin: 20px 0px;
+	height: 1px;
+	background-color: #8764b8;
+	margin: 20px 0px;
 }
 
 .form-row {
-  height: 60px;
+	height: 60px;
 }
 
 .form-col-title {
-  width: 250px;
-  text-align: right;
-  padding-right: 20px
+	width: 250px;
+	text-align: right;
+	padding-right: 20px
 }
 
 .form-col-content {

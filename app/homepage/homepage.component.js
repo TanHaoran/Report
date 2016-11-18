@@ -12,12 +12,13 @@ var core_1 = require('@angular/core');
 // 首页页面
 var HomepageComponent = (function () {
     function HomepageComponent() {
+        this.today = Date.now();
     }
     HomepageComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'thr-homepage',
-            template: '这里是首页'
+            template: "\n\t\t<div>\n\t\t\t<p>Hello ~ !</p>\n\t\t\t<p>\u4ECA\u5929\u662F\uFF1A {{today | date:'fullDate'}}</p>\n\t\t</div>\n\t"
         }), 
         __metadata('design:paramtypes', [])
     ], HomepageComponent);

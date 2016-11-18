@@ -14,11 +14,13 @@ var day_component_1 = require('./day/day.component');
 var month_component_1 = require('./month/month.component');
 var report_component_1 = require('./report.component');
 var login_component_1 = require('./login/login.component');
+var register_component_1 = require('./login/register.component');
 var homepage_component_1 = require('./homepage/homepage.component');
 // 路由类
 var routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'register', component: register_component_1.RegisterComponent },
     {
         path: 'report',
         component: report_component_1.ReportComponent,

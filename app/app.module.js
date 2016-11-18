@@ -15,6 +15,7 @@ var app_component_1 = require('./app.component');
 var day_component_1 = require('./day/day.component');
 var month_component_1 = require('./month/month.component');
 var login_component_1 = require('./login/login.component');
+var register_component_1 = require('./login/register.component');
 var report_component_1 = require('./report.component');
 var homepage_component_1 = require('./homepage/homepage.component');
 var form_service_1 = require('./service/form.service');
@@ -34,6 +35,7 @@ var AppModule = (function () {
                 day_component_1.DayComponent,
                 month_component_1.MonthComponent,
                 login_component_1.LoginComponent,
+                register_component_1.RegisterComponent,
                 report_component_1.ReportComponent,
                 homepage_component_1.HomepageComponent,
                 login_component_1.LoginComponent

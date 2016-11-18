@@ -6,12 +6,14 @@ import { DayComponent } from './day/day.component';
 import { MonthComponent } from './month/month.component';
 import { ReportComponent } from './report.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './login/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
 // 路由类
 const routes: Routes = [
 	{ path: '', redirectTo: '/login', pathMatch: 'full' },
 	{ path: 'login', component: LoginComponent },
+	{ path: 'register', component: RegisterComponent },
 	{ 
 		path: 'report', 
 		component: ReportComponent,
