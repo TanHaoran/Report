@@ -20,7 +20,7 @@ export class RegisterComponent {
 
 
 	model = new User(0, '', '', '');
-	offices = ['神经1病区'，'神经2病区', '儿科1病区', '儿科2病区'];
+	offices = ['神经1病区','神经2病区', '儿科1病区', '儿科2病区'];
 
 	constructor(
 		private router: Router
