@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var User_1 = require('../entity/User');
+var form_service_1 = require("../service/form.service");
 // 登陆页面
 var LoginComponent = (function () {
-    function LoginComponent(router) {
+    function LoginComponent(router, formService) {
         this.router = router;
+        this.formService = formService;
         this.active = true;
         this.submitted = false;
         this.model = new User_1.User(0, '', '', '');
@@ -24,12 +26,11 @@ var LoginComponent = (function () {
         this.submitted = true;
         this.router.navigateByUrl('/report');
     };
-    Object.defineProperty(LoginComponent.prototype, "diagnostic", {
-        // TODO: Remove this when we're done
-        get: function () { return JSON.stringify(this.model); },
-        enumerable: true,
-        configurable: true
-    });
+    LoginComponent.prototype.onLogin = function () {
+        this.formService.getUser().subscribe(function (user) {
+            console.log(user.UserId);
+        });
+    };
     LoginComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -37,7 +38,7 @@ var LoginComponent = (function () {
             templateUrl: 'login.component.html',
             styleUrls: ['login.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, form_service_1.FormService])
     ], LoginComponent);
     return LoginComponent;
 }());

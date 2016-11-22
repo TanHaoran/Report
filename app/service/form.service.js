@@ -10,17 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var mock_form_1 = require('./mock-form');
-// 英雄服务
+var http_1 = require("@angular/http");
+require('rxjs/add/operator/toPromise');
+require('rxjs/add/operator/map');
+// 数据服务
 var FormService = (function () {
-    function FormService() {
+    // private testUrl = 'http://date.jsontest.com/';
+    function FormService(http) {
+        this.http = http;
+        this.loginUrl = 'http://192.168.0.231:3002/login/yl';
+        this.testUrl = 'http://192.168.0.244:8001/NurseService.svc/getuserbyid/00001';
     }
     // 获取所有表单结构数据
     FormService.prototype.getForms = function () {
         return Promise.resolve(mock_form_1.FORMS);
     };
+    FormService.prototype.getUser = function () {
+        // console.log("请求地址" + this.testUrl);
+        // this.http.get(this.testUrl).map(res => {
+        //     res.json();
+        //     console.log(res.json());
+        // });
+        console.log("请求地址" + this.testUrl);
+        return this.http.get(this.testUrl).map(function (res) { return res.json(); });
+    };
     FormService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], FormService);
     return FormService;
 }());

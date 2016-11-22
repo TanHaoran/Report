@@ -20,6 +20,7 @@ var report_component_1 = require('./report.component');
 var homepage_component_1 = require('./homepage/homepage.component');
 var form_service_1 = require('./service/form.service');
 var app_routing_module_1 = require('./app-routing.module');
+var http_1 = require("@angular/http");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -28,7 +29,8 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
-                app_routing_module_1.AppRoutingModule
+                app_routing_module_1.AppRoutingModule,
+                http_1.HttpModule
             ],
             declarations: [
                 app_component_1.AppComponent,
