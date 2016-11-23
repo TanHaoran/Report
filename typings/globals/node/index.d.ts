@@ -1945,14 +1945,14 @@ declare module "path" {
      */
     export function relative(from: string, to: string): string;
     /**
-     * Return the directory name of a path. Similar to the Unix dirname command.
+     * Return the directory username of a path. Similar to the Unix dirname command.
      *
      * @param p the path to evaluate.
      */
     export function dirname(p: string): string;
     /**
      * Return the last portion of a path. Similar to the Unix basename command.
-     * Often used to extract the file name from a fully qualified path.
+     * Often used to extract the file username from a fully qualified path.
      *
      * @param p the path to evaluate.
      * @param ext optionally, an extension to remove from the result.
@@ -2075,7 +2075,7 @@ declare module "tls" {
 
     export class TLSSocket extends stream.Duplex {
         /**
-         * Returns the bound address, the address family name and port of the underlying socket as reported by
+         * Returns the bound address, the address family username and port of the underlying socket as reported by
          * the operating system.
          * @returns {any} - An object with three properties, e.g. { port: 12346, family: 'IPv4', address: '127.0.0.1' }.
          */
@@ -2095,8 +2095,8 @@ declare module "tls" {
          */
         encrypted: boolean;
         /**
-         * Returns an object representing the cipher name and the SSL/TLS protocol version of the current connection.
-         * @returns {CipherNameAndProtocol} - Returns an object representing the cipher name
+         * Returns an object representing the cipher username and the SSL/TLS protocol version of the current connection.
+         * @returns {CipherNameAndProtocol} - Returns an object representing the cipher username
          * and the SSL/TLS protocol version of the current connection.
          */
         getCipher(): CipherNameAndProtocol;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 // app外层壳
 @Component({
@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 	template: '<router-outlet></router-outlet>'
 })
 
-export class AppComponent { }
+export class AppComponent {
+}

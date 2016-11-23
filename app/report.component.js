@@ -9,10 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var user_1 = require("./entity/user");
+var system_config_1 = require("./util/system.config");
 // 首页页面
 var ReportComponent = (function () {
     function ReportComponent() {
+        this.user = new user_1.User(0, '', '', '');
     }
+    ReportComponent.prototype.ngOnInit = function () {
+        this.user = new user_1.User(0, '', '', '');
+        this.user.username = system_config_1.SystemConfig.getUsername();
+    };
     ReportComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

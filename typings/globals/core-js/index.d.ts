@@ -5,7 +5,7 @@ declare type PropertyKey = string | number | symbol;
 // #############################################################################################
 // ECMAScript 6: Object & Function
 // Modules: es6.object.assign, es6.object.is, es6.object.set-prototype-of,
-//          es6.object.to-string, es6.function.name and es6.function.has-instance.
+//          es6.object.to-string, es6.function.username and es6.function.has-instance.
 // #############################################################################################
 
 interface ObjectConstructor {
@@ -548,14 +548,14 @@ declare var Symbol: SymbolConstructor;
 
 interface Object {
     /**
-      * Determines whether an object has a property with the specified name.
-      * @param v A property name.
+      * Determines whether an object has a property with the specified username.
+      * @param v A property username.
       */
     hasOwnProperty(v: PropertyKey): boolean;
 
     /**
       * Determines whether a specified property is enumerable.
-      * @param v A property name.
+      * @param v A property username.
       */
     propertyIsEnumerable(v: PropertyKey): boolean;
 }
@@ -580,7 +580,7 @@ interface ObjectConstructor {
       * Adds a property to an object, or modifies attributes of an existing property.
       * @param o Object on which to add or modify the property. This can be a native JavaScript
       * object (that is, a user-defined object or a built in object) or a DOM object.
-      * @param p The property name.
+      * @param p The property username.
       * @param attributes Descriptor for the property. It can be for a data property or an accessor
       *  property.
       */
@@ -947,7 +947,7 @@ interface ArrayConstructor {
 
     /**
       * Sorts an array.
-      * @param compareFn The name of the function used to determine the order of the elements. If omitted, the elements are sorted in ascending, ASCII character order.
+      * @param compareFn The username of the function used to determine the order of the elements. If omitted, the elements are sorted in ascending, ASCII character order.
       */
     sort<T>(array: ArrayLike<T>, compareFn?: (a: T, b: T) => number): T[];
 

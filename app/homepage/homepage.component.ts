@@ -1,9 +1,6 @@
-import { Component } from '@angular/core';
-
-import { Router } from '@angular/router';
-
-import { Form } from '../entity/form';
-import { FormService } from '../service/form.service';
+import {Component, OnInit} from '@angular/core';
+import {User} from "../entity/user";
+import {SystemConfig} from "../util/system.config";
 
 
 // 首页页面
@@ -12,14 +9,20 @@ import { FormService } from '../service/form.service';
 	selector: 'thr-homepage',
 	template: `
 		<div>
-			<p>Hello ~ !</p>
+			<p>Hello ~ {{user.username}}，你好!</p>
 			<p>今天是： {{today | date:'fullDate'}}</p>
 		</div>
 	`
 })
 
-export class HomepageComponent { 
+export class HomepageComponent implements OnInit{
 
-	today: number = Date.now();	
+	user= new User(0, '', '', '');
+	today: number = Date.now();
+
+	ngOnInit(): void {
+		this.user.username = SystemConfig.getUsername();
+	}
+
 }
 

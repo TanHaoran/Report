@@ -11,18 +11,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var User_1 = require('../entity/User');
+var form_service_1 = require("../service/form.service");
 // 登陆页面
 var RegisterComponent = (function () {
-    function RegisterComponent(router) {
+    function RegisterComponent(router, formService) {
         this.router = router;
-        this.active = true;
-        this.submitted = false;
+        this.formService = formService;
         this.model = new User_1.User(0, '', '', '');
-        this.offices = ['神经1病区', '神经2病区', '儿科1病区', '儿科2病区'];
+        this.officeNames = ['神经1病区', '神经2病区', '儿科1病区', '儿科2病区'];
     }
+    RegisterComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.formService.getOffice().subscribe(function (offices) {
+            console.log('获取JSON内容：' + JSON.stringify(offices));
+            for (var i = 0; i < offices.length; i++) {
+                _this.officeNames[i] = offices[i].OfficeName;
+            }
+        });
+    };
     // 注册
     RegisterComponent.prototype.onSubmit = function () {
-        this.submitted = true;
         this.router.navigateByUrl('/login');
     };
     RegisterComponent = __decorate([
@@ -32,7 +40,7 @@ var RegisterComponent = (function () {
             templateUrl: 'register.component.html',
             styleUrls: ['login.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, form_service_1.FormService])
     ], RegisterComponent);
     return RegisterComponent;
 }());

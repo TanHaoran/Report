@@ -13,10 +13,8 @@ import 'rxjs/add/operator/map'
 export class FormService {
 
 
-    private loginUrl = 'http://192.168.0.231:3002/login/yl';
-
-    private testUrl = 'http://192.168.0.244:8001/NurseService.svc/getuserbyid/00001';
-    // private testUrl = 'http://date.jsontest.com/';
+    private loginUrl = 'http://192.168.0.231:3002/login/';
+    private getOfficeUrl = 'http://localhost:3002/getOffice';
 
     constructor(private http: Http) {
 
@@ -27,13 +25,24 @@ export class FormService {
         return Promise.resolve(FORMS);
     }
 
-    getUser() {
-        // console.log("请求地址" + this.testUrl);
-        // this.http.get(this.testUrl).map(res => {
-        //     res.json();
-        //     console.log(res.json());
-        // });
-        console.log("请求地址" + this.testUrl);
-        return this.http.get(this.testUrl).map(res => res.json());
+    /**
+     * 发送用户名和密码到服务端验证登陆
+     * @param username 用户名
+     * @param password 密码
+     * @returns {Observable<R>}
+     */
+    getUser(username: string, password: string) {
+        var url = this.loginUrl + username + "/" + password;
+        console.log("请求地址：" + url);
+        return this.http.get(url).map(res => res.json());
+    }
+
+    /**
+     * 获取所有科室信息
+     * @returns {Observable<R>}
+     */
+    getOffice() {
+        console.log("请求地址：" + this.getOfficeUrl);
+        return this.http.get(this.getOfficeUrl).map(res => res.json());
     }
 }

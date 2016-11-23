@@ -1,16 +1,15 @@
 <div class="login-title">上报系统</div>
 
 <div class="container login-container">
-	<button (click)="onLogin()">测试</button>
 	<h1>登录</h1>
 	<div class="report-line"></div>
-	<form  *ngIf="active" (ngSubmit)="onSubmit()" #reportForm="ngForm">
+	<form (ngSubmit)="onSubmit()" #reportForm="ngForm">
 
 		<!--用户名-->
 		<div class="form-group">
 			<label for="name">用户名</label>
 			<input type="text" class="form-control" id="name" required
-			[(ngModel)]="model.name" name="name" #name="ngModel">
+				   [(ngModel)]="model.username" name="name" #name="ngModel">
 			<div [hidden]="name.valid || name.pristine" class="alert alert-danger">
 				用户名不能为空
 			</div>

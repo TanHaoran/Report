@@ -4,13 +4,13 @@ var User = (function () {
         // id
         id, 
         // 姓名
-        name, 
+        username, 
         // 密码
         password, 
         // 所属科室
         office) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.password = password;
         this.office = office;
     }

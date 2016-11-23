@@ -15,10 +15,6 @@ import {FormService} from "../service/form.service";
 
 export class LoginComponent {
 
-
-    active = true;
-    submitted = false;
-
     model = new User(0, '', '', '');
 
 
@@ -28,15 +24,15 @@ export class LoginComponent {
 
     // 登录
     onSubmit() {
-        this.submitted = true;
-        this.router.navigateByUrl('/report');
-    }
+        this.formService.getUser(this.model.username, this.model.password).subscribe(user => {
+            console.log('获取JSON内容：' + JSON.stringify(user));
+            if (user[0] && user[0].LoginName == this.model.username) {
+                localStorage.setItem('user', JSON.stringify(user[0]));
+                this.router.navigateByUrl('/report');
+            } else {
+                alert("用户或密码错误！");
+            }
 
-    onLogin(): void {
-        this.formService.getUser().subscribe(
-            user => {
-                console.log(user.UserId);
-            });
+        });
     }
-
 }

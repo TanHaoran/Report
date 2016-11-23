@@ -17,18 +17,20 @@ var LoginComponent = (function () {
     function LoginComponent(router, formService) {
         this.router = router;
         this.formService = formService;
-        this.active = true;
-        this.submitted = false;
         this.model = new User_1.User(0, '', '', '');
     }
     // 登录
     LoginComponent.prototype.onSubmit = function () {
-        this.submitted = true;
-        this.router.navigateByUrl('/report');
-    };
-    LoginComponent.prototype.onLogin = function () {
-        this.formService.getUser().subscribe(function (user) {
-            console.log(user.UserId);
+        var _this = this;
+        this.formService.getUser(this.model.username, this.model.password).subscribe(function (user) {
+            console.log('获取JSON内容：' + JSON.stringify(user));
+            if (user[0] && user[0].LoginName == _this.model.username) {
+                localStorage.setItem('user', JSON.stringify(user[0]));
+                _this.router.navigateByUrl('/report');
+            }
+            else {
+                alert("用户或密码错误！");
+            }
         });
     };
     LoginComponent = __decorate([
