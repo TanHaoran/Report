@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
 
 
     model = new User(0, '', '', '');
-    officeNames = ['神经1病区', '神经2病区', '儿科1病区', '儿科2病区'];
+    officeNames: string[] = [];
 
     constructor(private router: Router, private formService: FormService) {
 
@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.formService.getOffice().subscribe(offices => {
+        this.formService.getOffices().subscribe(offices => {
             console.log('获取JSON内容：' + JSON.stringify(offices));
             for (var i = 0; i < offices.length; i++) {
                 this.officeNames[i] = offices[i].OfficeName;

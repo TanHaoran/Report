@@ -14,7 +14,8 @@ export class FormService {
 
 
     private loginUrl = 'http://192.168.0.231:3002/login/';
-    private getOfficeUrl = 'http://localhost:3002/getOffice';
+    private getOfficesUrl = 'http://localhost:3002/getOffices';
+    private getSensitivesUrl = 'http://localhost:3002/getSensitive';
 
     constructor(private http: Http) {
 
@@ -41,8 +42,13 @@ export class FormService {
      * 获取所有科室信息
      * @returns {Observable<R>}
      */
-    getOffice() {
-        console.log("请求地址：" + this.getOfficeUrl);
-        return this.http.get(this.getOfficeUrl).map(res => res.json());
+    getOffices() {
+        console.log("请求地址：" + this.getOfficesUrl);
+        return this.http.get(this.getOfficesUrl).map(res => res.json());
+    }
+
+    getSensitives() {
+        console.log("请求地址：" + this.getSensitivesUrl);
+        return this.http.get(this.getSensitivesUrl).map(res => res.json());
     }
 }

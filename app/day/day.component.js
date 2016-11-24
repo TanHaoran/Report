@@ -11,16 +11,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var form_service_1 = require('../service/form.service');
+var sensitive_1 = require("../entity/sensitive");
 // 每日汇报页面
 var DayComponent = (function () {
     function DayComponent(router, formService) {
         this.router = router;
         this.formService = formService;
+        // 敏感词汇结构
+        this.sensitives = [];
     }
     DayComponent.prototype.ngOnInit = function () {
         var _this = this;
         // 初始化所有报表
         this.formService.getForms().then(function (forms) { return _this.forms = forms; });
+        // 读取敏感词汇表结构
+        this.formService.getSensitives().subscribe(function (sensitives) {
+            console.log('获取JSON内容：' + JSON.stringify(sensitives));
+            for (var i = 0; i < sensitives.length; i++) {
+                var s = new sensitive_1.Sensitive();
+                s.sensitiveId = sensitives[i].SensitiveId;
+                s.name = sensitives[i].Name;
+                s.parentId = sensitives[i].ParentId;
+                s.grade = sensitives[i].Grade;
+                sensitives[i] = s;
+            }
+        });
     };
     // 当选择一个左侧报表的类型
     DayComponent.prototype.onSelect = function (form) {

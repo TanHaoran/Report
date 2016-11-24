@@ -18,11 +18,11 @@ var RegisterComponent = (function () {
         this.router = router;
         this.formService = formService;
         this.model = new User_1.User(0, '', '', '');
-        this.officeNames = ['神经1病区', '神经2病区', '儿科1病区', '儿科2病区'];
+        this.officeNames = [];
     }
     RegisterComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.formService.getOffice().subscribe(function (offices) {
+        this.formService.getOffices().subscribe(function (offices) {
             console.log('获取JSON内容：' + JSON.stringify(offices));
             for (var i = 0; i < offices.length; i++) {
                 _this.officeNames[i] = offices[i].OfficeName;

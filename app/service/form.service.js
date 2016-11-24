@@ -18,7 +18,8 @@ var FormService = (function () {
     function FormService(http) {
         this.http = http;
         this.loginUrl = 'http://192.168.0.231:3002/login/';
-        this.getOfficeUrl = 'http://localhost:3002/getOffice';
+        this.getOfficesUrl = 'http://localhost:3002/getOffices';
+        this.getSensitivesUrl = 'http://localhost:3002/getSensitive';
     }
     // 获取所有表单结构数据
     FormService.prototype.getForms = function () {
@@ -39,9 +40,13 @@ var FormService = (function () {
      * 获取所有科室信息
      * @returns {Observable<R>}
      */
-    FormService.prototype.getOffice = function () {
-        console.log("请求地址：" + this.getOfficeUrl);
-        return this.http.get(this.getOfficeUrl).map(function (res) { return res.json(); });
+    FormService.prototype.getOffices = function () {
+        console.log("请求地址：" + this.getOfficesUrl);
+        return this.http.get(this.getOfficesUrl).map(function (res) { return res.json(); });
+    };
+    FormService.prototype.getSensitives = function () {
+        console.log("请求地址：" + this.getSensitivesUrl);
+        return this.http.get(this.getSensitivesUrl).map(function (res) { return res.json(); });
     };
     FormService = __decorate([
         core_1.Injectable(), 
