@@ -1,0 +1,11 @@
+p {
+    font-size: 20px;
+}
+
+div {
+    padding-top: 100px;
+    background-color: #72a487;
+    width: 100%;
+    text-align: center;
+    height: 400px;
+}

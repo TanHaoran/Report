@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var User_1 = require('../entity/User');
-var form_service_1 = require("../service/form.service");
+var report_service_1 = require("../service/report.service");
 // 登陆页面
 var LoginComponent = (function () {
     function LoginComponent(router, formService) {
@@ -40,7 +40,7 @@ var LoginComponent = (function () {
             templateUrl: 'login.component.html',
             styleUrls: ['login.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, form_service_1.FormService])
+        __metadata('design:paramtypes', [router_1.Router, report_service_1.ReportService])
     ], LoginComponent);
     return LoginComponent;
 }());

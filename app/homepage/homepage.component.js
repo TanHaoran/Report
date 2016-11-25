@@ -24,7 +24,8 @@ var HomepageComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'thr-homepage',
-            template: "\n\t\t<div>\n\t\t\t<p>Hello ~ {{user.username}}\uFF0C\u4F60\u597D!</p>\n\t\t\t<p>\u4ECA\u5929\u662F\uFF1A {{today | date:'fullDate'}}</p>\n\t\t</div>\n\t"
+            template: "\n\t\t<div>\n\t\t\t<p>Hello ~ {{user.username}}\uFF0C\u4F60\u597D!</p>\n\t\t\t<p>\u4ECA\u5929\u662F\uFF1A {{today | date:'fullDate'}}</p>\n\t\t</div>\n\t",
+            styleUrls: ['homepage.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], HomepageComponent);

@@ -18,7 +18,7 @@ var login_component_1 = require('./login/login.component');
 var register_component_1 = require('./login/register.component');
 var report_component_1 = require('./report.component');
 var homepage_component_1 = require('./homepage/homepage.component');
-var form_service_1 = require('./service/form.service');
+var report_service_1 = require('./service/report.service');
 var app_routing_module_1 = require('./app-routing.module');
 var http_1 = require("@angular/http");
 var AppModule = (function () {
@@ -42,7 +42,7 @@ var AppModule = (function () {
                 homepage_component_1.HomepageComponent,
                 login_component_1.LoginComponent
             ],
-            providers: [form_service_1.FormService],
+            providers: [report_service_1.ReportService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

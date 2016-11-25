@@ -11,14 +11,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var user_1 = require("./entity/user");
 var system_config_1 = require("./util/system.config");
+var report_service_1 = require("./service/report.service");
 // 首页页面
 var ReportComponent = (function () {
-    function ReportComponent() {
+    function ReportComponent(reportService) {
+        this.reportService = reportService;
         this.user = new user_1.User(0, '', '', '');
     }
     ReportComponent.prototype.ngOnInit = function () {
         this.user = new user_1.User(0, '', '', '');
         this.user.username = system_config_1.SystemConfig.getUsername();
+        // 读取所有表结构
+        this.reportService.getReportForm().subscribe(function (reportForms) {
+            console.log('获取JSON内容：' + JSON.stringify(reportForms));
+            localStorage.setItem('report_form', JSON.stringify(reportForms));
+        });
     };
     ReportComponent = __decorate([
         core_1.Component({
@@ -27,7 +34,7 @@ var ReportComponent = (function () {
             templateUrl: 'report.component.html',
             styleUrls: ['app.component.css', 'report.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [report_service_1.ReportService])
     ], ReportComponent);
     return ReportComponent;
 }());

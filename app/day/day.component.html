@@ -1,30 +1,36 @@
 <div class="menu">
-	<ul class="heroes">
-		<li *ngFor="let form of forms" [class.selected]="form === selectedForm" (click)="onSelect(form)">
-			<span class="badge">{{form.index}}</span>{{form.name}}
-		</li>
-	</ul>
-</div>	
+    <ul class="heroes">
+        <li *ngFor="let rf of reportForms" [class.selected]="rf === selectedForm" (click)="onSelect(rf)">
+            <span class="badge">{{rf.index}}</span>{{rf.name}}
+        </li>
+    </ul>
+</div>
 
 <div class="content">
-	<div class="day-form" >
-		<div *ngIf="selectedForm">
-			<div class="form-title"><h2>{{selectedForm.name}}</h2></div>
-			<div class="form-line"></div>
-			<table>
-				<tr class="form-row" *ngFor="let title of selectedForm.titles">
-					<td class="form-col-title">{{title}}</td>
-					<td>
-						<input class="form-control" type="text" name="">
-					</td>
-				</tr>
-				<tr class="form-row">
-					<td></td>
-					<td>
-						<button class="btn btn-default" type="button">提交</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
+    <div class="day-form">
+        <div *ngIf="selectedForm">
+            <div class="form-title"><h2>{{selectedForm.name}}</h2></div>
+            <div class="form-line"></div>
+            <table>
+                <!--表内容-->
+                <tr class="form-row" *ngFor="let s of sensitives">
+
+                    <td class="form-col-title"><span *ngIf="s.parentName">{{s.parentName}}（</span>{{s.name}}<span
+                            *ngIf="s.parentName">）</span></td>
+                    <td>
+                        <input class="form-control" type="number" name="">
+                    </td>
+
+                </tr>
+
+                <!--提交按钮-->
+                <tr class="form-row">
+                    <td></td>
+                    <td>
+                        <button class="btn btn-default" type="button">提交</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>

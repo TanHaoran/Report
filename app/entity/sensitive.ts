@@ -16,15 +16,15 @@ export class Sensitive {
      */
     public name: string;
     /**
-     * 父级id
+     * 父级名称
      */
-    public parentId: string;
+    public parentName: string;
     /**
-     * 等级
+     * 是否含有子元素
      */
-    public grade: number;
-
-
-    constructor() {
-    }
+    public hasChildren: boolean;
+    /**
+     * 所属上报表id
+     */
+    public reportFormId: string;
 }

@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var form_service_1 = require('../service/form.service');
+var report_service_1 = require('../service/report.service');
 // 每月汇总页面
 var MonthComponent = (function () {
     function MonthComponent(router, formService) {
@@ -36,7 +36,7 @@ var MonthComponent = (function () {
                 'month.component.css'
             ]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, form_service_1.FormService])
+        __metadata('design:paramtypes', [router_1.Router, report_service_1.ReportService])
     ], MonthComponent);
     return MonthComponent;
 }());

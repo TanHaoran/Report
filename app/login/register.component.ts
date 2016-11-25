@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {User}    from '../entity/User';
-import {FormService} from "../service/form.service";
+import {ReportService} from "../service/report.service";
 
 
 // 登陆页面
@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     model = new User(0, '', '', '');
     officeNames: string[] = [];
 
-    constructor(private router: Router, private formService: FormService) {
+    constructor(private router: Router, private formService: ReportService) {
 
     }
 

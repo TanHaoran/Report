@@ -10,12 +10,13 @@ import 'rxjs/add/operator/map'
 
 // 数据服务
 @Injectable()
-export class FormService {
+export class ReportService {
 
 
     private loginUrl = 'http://192.168.0.231:3002/login/';
     private getOfficesUrl = 'http://localhost:3002/getOffices';
-    private getSensitivesUrl = 'http://localhost:3002/getSensitive';
+    private getReportFormsUrl = 'http://localhost:3002/getReportForms';
+    private getSensitivesUrl = 'http://localhost:3002/getSensitives/';
 
     constructor(private http: Http) {
 
@@ -47,8 +48,22 @@ export class FormService {
         return this.http.get(this.getOfficesUrl).map(res => res.json());
     }
 
-    getSensitives() {
-        console.log("请求地址：" + this.getSensitivesUrl);
-        return this.http.get(this.getSensitivesUrl).map(res => res.json());
+    /**
+     * 获取所有上报表信息
+     * @returns {Observable<R>}
+     */
+    getReportForm() {
+        console.log("请求地址：" + this.getReportFormsUrl);
+        return this.http.get(this.getReportFormsUrl).map(res => res.json());
+    }
+
+    /**
+     * 获取敏感词汇信息
+     * @returns {Observable<R>}
+     */
+    getSensitives(reportFormId: string) {
+        var url = this.getSensitivesUrl + reportFormId;
+        console.log("请求地址：" + url);
+        return this.http.get(url).map(res => res.json());
     }
 }

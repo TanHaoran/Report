@@ -13,7 +13,7 @@ import {ReportComponent} from './report.component';
 import {HomepageComponent} from './homepage/homepage.component';
 
 
-import {FormService}   from './service/form.service';
+import {ReportService}   from './service/report.service';
 
 import {AppRoutingModule}  from './app-routing.module';
 import {HttpModule} from "@angular/http";
@@ -36,7 +36,7 @@ import {HttpModule} from "@angular/http";
         HomepageComponent,
         LoginComponent
     ],
-    providers: [FormService],
+    providers: [ReportService],
     bootstrap: [AppComponent]
 })
 

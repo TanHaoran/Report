@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Form } from '../entity/form';
-import { FormService } from '../service/form.service';
+import { ReportService } from '../service/report.service';
 
 // 每月汇总页面
 @Component({
@@ -24,7 +24,7 @@ export class MonthComponent {
 
 	constructor(
 		private router: Router,
-		private formService: FormService) { }
+		private formService: ReportService) { }
 
 	ngOnInit(): void {
 		// 初始化所有报表
