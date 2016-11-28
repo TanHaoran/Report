@@ -18,7 +18,7 @@
                     <td class="form-col-title"><span *ngIf="s.parentName">{{s.parentName}}（</span>{{s.name}}<span
                             *ngIf="s.parentName">）</span></td>
                     <td>
-                        <input class="form-control" type="number" name="">
+                        <input #people (keyup)="onlyNumber(s, people)" class="form-control" type="number" name="">
                     </td>
 
                 </tr>
@@ -27,7 +27,7 @@
                 <tr class="form-row">
                     <td></td>
                     <td>
-                        <button class="btn btn-default" type="button">提交</button>
+                        <button class="btn btn-default" type="button" (click)="onSubmit()">提交</button>
                     </td>
                 </tr>
             </table>

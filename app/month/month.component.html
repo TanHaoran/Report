@@ -1,19 +1,19 @@
 <div class="menu">
-	<ul class="heroes">
-		<li *ngFor="let form of forms" [class.selected]="form === selectedForm" (click)="onSelect(form)">
-			<span class="badge">{{form.index}}</span>{{form.name}}汇总
-		</li>
-	</ul>
-</div>	
+    <ul class="heroes">
+        <li *ngFor="let rf of reportForms" [class.selected]="rf === selectedForm" (click)="onSelect(rf)">
+            <span class="badge">{{rf.index}}</span>{{rf.name}}汇总
+        </li>
+    </ul>
+</div>
 
 <div class="month-content">
-	<div *ngIf="selectedForm">
-		<div class="month-title">{{selectedForm.name}}汇总</div>
-		<form class="month-form">
-			<tr class="month-form-row">
-				<td class="month-form-number-col">序号</td>
-				<td *ngFor="let title of selectedForm.titles" class="month-form-number-col">{{title}}</td>
-			</tr>
-		</form>
-	</div>
+    <div *ngIf="selectedForm">
+        <div class="month-title">{{selectedForm.name}}汇总</div>
+        <form class="month-form">
+            <tr class="month-form-row">
+                <td class="month-form-number-col">序号</td>
+                <td *ngFor="let s of sensitives" class="month-form-number-col">{{s.name}}</td>
+            </tr>
+        </form>
+    </div>
 </div>

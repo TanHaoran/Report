@@ -1,39 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Router } from '@angular/router';
-
-import { Form } from '../entity/form';
-import { ReportService } from '../service/report.service';
+import {ReportService} from '../service/report.service';
+import {SystemConfig} from "../util/system.config";
+import {ReportForm} from "../entity/report-form";
+import {JsonUtil} from "../util/json-util";
 
 // 每月汇总页面
 @Component({
-	moduleId: module.id,
-	templateUrl: 'month.component.html',
-	styleUrls: [ 
-		'../day/day.component.css',
-		'month.component.css'
-	]
+    moduleId: module.id,
+    templateUrl: 'month.component.html',
+    styleUrls: ['../day/day.component.css', 'month.component.css']
 })
 
-export class MonthComponent {
-	// 所有报表
-	forms: Form[];
+export class MonthComponent implements OnInit {
+    // 所有上报表
+    reportForms: ReportForm[];
 
-	// 当前选择的报表
-	selectedForm: Form;
+    // 当前选择的报表
+    selectedForm: ReportForm;
 
-	constructor(
-		private router: Router,
-		private formService: ReportService) { }
+    // 敏感词汇结构
+    sensitives = [];
 
-	ngOnInit(): void {
-		// 初始化所有报表
-		this.formService.getForms()
-		.then(forms => this.forms = forms);
-	}
+    constructor(private formService: ReportService) {
+    }
 
-	// 当选择一个左侧报表的类型
-	onSelect(form: Form): void {
-		this.selectedForm = form;
-	}
+    ngOnInit(): void {
+        // 读取所有上报表
+        this.reportForms = SystemConfig.getReportForms();
+    }
+
+    // 当选择一个左侧报表的类型
+    onSelect(rf: ReportForm): void {
+        this.selectedForm = rf;
+        // 读取敏感词汇表结构
+        this.formService.getSensitives(rf.id).subscribe(sensitives => {
+            console.log('获取JSON内容：' + JSON.stringify(sensitives));
+            // 将Json转换成敏感词汇
+            this.sensitives = JsonUtil.parseJsonToSensitive(sensitives);
+        });
+    }
 }

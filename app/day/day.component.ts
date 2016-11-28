@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 import {Router} from '@angular/router';
 
@@ -6,6 +6,8 @@ import {ReportService} from '../service/report.service';
 import {Sensitive} from "../entity/sensitive";
 import {SystemConfig} from "../util/system.config";
 import {ReportForm} from "../entity/report-form";
+import {ElementUtil} from "../util/element-util";
+import {JsonUtil} from "../util/json-util";
 
 
 // 每日汇报页面
@@ -41,40 +43,30 @@ export class DayComponent implements OnInit {
         // 读取敏感词汇表结构
         this.formService.getSensitives(rf.id).subscribe(sensitives => {
             console.log('获取JSON内容：' + JSON.stringify(sensitives));
-            this.sensitives = this.parseJsonToSensitive(sensitives);
+            // 将Json转换成敏感词汇
+            this.sensitives = JsonUtil.parseJsonToSensitive(sensitives);
         });
     }
 
+
     /**
-     * 将Json转换成敏感词汇
-     * @param sensitives 敏感词汇json字串
+     * 限制输入框只能输入正整数
+     * @param s
+     * @param people
      */
-    private parseJsonToSensitive(sensitives): Sensitive[] {
-        // 最终要返回的结果集合
-        var sensitiveArray = new Array<Sensitive>();
-
-        for (var i = 0; i < sensitives.length; i++) {
-            // 从json中取出每一个属性
-            var sensitiveId = sensitives[i].SensitiveId;
-            var name = sensitives[i].Name;
-            var parentName = sensitives[i].ParentName;
-            var hasChildren = sensitives[i].HasChildren;
-            var reportFormId = sensitives[i].ReportFormId;
-
-            // 构建敏感词
-            var s = new Sensitive();
-            s.sensitiveId = sensitiveId;
-            s.name = name;
-            s.parentName = parentName;
-            s.hasChildren = hasChildren;
-            s.reportFormId = reportFormId;
-
-            // 如果是不是父级就直接添加进去，如果是父级就跳过
-            if (!hasChildren) {
-                sensitiveArray.push(s);
-            }
-        }
-        return sensitiveArray;
+    onlyNumber(s: Sensitive, people) {
+        s.people = ElementUtil.makePositiveInteger(people);
     }
+
+    onSubmit() {
+
+        for(var i = 0; i < this.sensitives.length; i++) {
+
+        }
+        this.formService.postSensitives();
+    }
+
+
+
 }
 

@@ -21,6 +21,7 @@ var ReportService = (function () {
         this.getOfficesUrl = 'http://localhost:3002/getOffices';
         this.getReportFormsUrl = 'http://localhost:3002/getReportForms';
         this.getSensitivesUrl = 'http://localhost:3002/getSensitives/';
+        this.postFormData = 'http://localhost:3002/postFormData';
     }
     // 获取所有表单结构数据
     ReportService.prototype.getForms = function () {
@@ -61,6 +62,19 @@ var ReportService = (function () {
         var url = this.getSensitivesUrl + reportFormId;
         console.log("请求地址：" + url);
         return this.http.get(url).map(function (res) { return res.json(); });
+    };
+    /**
+     * 提交一天的上报表
+     */
+    ReportService.prototype.postSensitives = function () {
+        var creds = "username=123" + "&password=123";
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Access-Control-Allow-Origin', '*');
+        this.http.post(this.postFormData, creds, {
+            headers: headers
+        }).map(function (res) { return res.json(); })
+            .subscribe(function (data) { return console.log(data); }, function (err) { return console.log('error'); }, function () { return console.log('Authentication Complete'); });
     };
     ReportService = __decorate([
         core_1.Injectable(), 

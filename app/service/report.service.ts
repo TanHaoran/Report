@@ -17,6 +17,7 @@ export class ReportService {
     private getOfficesUrl = 'http://localhost:3002/getOffices';
     private getReportFormsUrl = 'http://localhost:3002/getReportForms';
     private getSensitivesUrl = 'http://localhost:3002/getSensitives/';
+    private postFormData = 'http://localhost:3002/postFormData';
 
     constructor(private http: Http) {
 
@@ -65,5 +66,27 @@ export class ReportService {
         var url = this.getSensitivesUrl + reportFormId;
         console.log("请求地址：" + url);
         return this.http.get(url).map(res => res.json());
+    }
+
+    /**
+     * 提交一天的上报表
+     */
+    postSensitives() {
+
+        var creds = "username=123" + "&password=123";
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Access-Control-Allow-Origin', '*');
+
+        this.http.post(this.postFormData, creds, {
+            headers: headers
+        }).map(res => res.json())
+            .subscribe(
+                data => console.log(data),
+                err => console.log('error'),
+                () => console.log('Authentication Complete')
+            );
+
     }
 }
