@@ -48,7 +48,7 @@ var DayComponent = (function () {
     DayComponent.prototype.onSubmit = function () {
         for (var i = 0; i < this.sensitives.length; i++) {
         }
-        this.formService.postSensitives();
+        this.formService.postSensitives().subscribe(function (data) { return console.log(JSON.stringify(data)); }, function (error) { return alert(error); }, function () { return console.log("Finished"); });
     };
     DayComponent = __decorate([
         core_1.Component({

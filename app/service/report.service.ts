@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map'
 export class ReportService {
 
 
-    private loginUrl = 'http://192.168.0.231:3002/login/';
+    private loginUrl = 'http://192.168.0.238:3002/login/';
     private getOfficesUrl = 'http://localhost:3002/getOffices';
     private getReportFormsUrl = 'http://localhost:3002/getReportForms';
     private getSensitivesUrl = 'http://localhost:3002/getSensitives/';
@@ -73,20 +73,29 @@ export class ReportService {
      */
     postSensitives() {
 
-        var creds = "username=123" + "&password=123";
+        // var creds = "username=123" + "&password=123";
+        //
+        // var headers = new Headers();
+        // headers.append('Content-Type', 'application/json');
+        //
+        // this.http.post(this.postFormData, creds, {
+        //     headers: headers
+        // }).map(res => res.json()).subscribe(
+        //     data => console.log(data),
+        //     err => console.log('error'),
+        //     () => console.log('Authentication Complete')
+        // );
 
+
+        var json = JSON.stringify({var1: 'test', var2: 3});
+        var params = 'user=' + json;
         var headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('Content-Type', 'application/json');
-        headers.append('Access-Control-Allow-Origin', '*');
-
-        this.http.post(this.postFormData, creds, {
+        headers.append('Content-Type', 'application/json');
+        return this.http.post(this.postFormData, params, {
             headers: headers
-        }).map(res => res.json())
-            .subscribe(
-                data => console.log(data),
-                err => console.log('error'),
-                () => console.log('Authentication Complete')
-            );
+        }).map(res => res.json());
 
     }
 }

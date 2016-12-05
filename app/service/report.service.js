@@ -17,7 +17,7 @@ require('rxjs/add/operator/map');
 var ReportService = (function () {
     function ReportService(http) {
         this.http = http;
-        this.loginUrl = 'http://192.168.0.231:3002/login/';
+        this.loginUrl = 'http://192.168.0.238:3002/login/';
         this.getOfficesUrl = 'http://localhost:3002/getOffices';
         this.getReportFormsUrl = 'http://localhost:3002/getReportForms';
         this.getSensitivesUrl = 'http://localhost:3002/getSensitives/';
@@ -67,14 +67,27 @@ var ReportService = (function () {
      * 提交一天的上报表
      */
     ReportService.prototype.postSensitives = function () {
-        var creds = "username=123" + "&password=123";
+        // var creds = "username=123" + "&password=123";
+        //
+        // var headers = new Headers();
+        // headers.append('Content-Type', 'application/json');
+        //
+        // this.http.post(this.postFormData, creds, {
+        //     headers: headers
+        // }).map(res => res.json()).subscribe(
+        //     data => console.log(data),
+        //     err => console.log('error'),
+        //     () => console.log('Authentication Complete')
+        // );
+        var json = JSON.stringify({ var1: 'test', var2: 3 });
+        var params = 'user=' + json;
         var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         headers.append('Content-Type', 'application/json');
-        headers.append('Access-Control-Allow-Origin', '*');
-        this.http.post(this.postFormData, creds, {
+        headers.append('Content-Type', 'application/json');
+        return this.http.post(this.postFormData, params, {
             headers: headers
-        }).map(function (res) { return res.json(); })
-            .subscribe(function (data) { return console.log(data); }, function (err) { return console.log('error'); }, function () { return console.log('Authentication Complete'); });
+        }).map(function (res) { return res.json(); });
     };
     ReportService = __decorate([
         core_1.Injectable(), 

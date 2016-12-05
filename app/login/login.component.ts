@@ -32,7 +32,6 @@ export class LoginComponent {
             } else {
                 alert("用户或密码错误！");
             }
-
         });
     }
 }

@@ -60,12 +60,15 @@ export class DayComponent implements OnInit {
 
     onSubmit() {
 
-        for(var i = 0; i < this.sensitives.length; i++) {
+        for (var i = 0; i < this.sensitives.length; i++) {
 
         }
-        this.formService.postSensitives();
+        this.formService.postSensitives().subscribe(
+            data => console.log(JSON.stringify(data)),
+            error => alert(error),
+            () => console.log("Finished")
+        );
     }
-
 
 
 }
