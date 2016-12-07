@@ -45,10 +45,11 @@ var DayComponent = (function () {
     DayComponent.prototype.onlyNumber = function (s, people) {
         s.people = element_util_1.ElementUtil.makePositiveInteger(people);
     };
+    /**
+     * 提交表单数据
+     */
     DayComponent.prototype.onSubmit = function () {
-        for (var i = 0; i < this.sensitives.length; i++) {
-        }
-        this.formService.postSensitives().subscribe(function (data) { return console.log(JSON.stringify(data)); }, function (error) { return alert(error); }, function () { return console.log("Finished"); });
+        this.formService.postSensitives(this.sensitives).subscribe(function (data) { return console.log(JSON.stringify(data)); }, function (error) { return alert(error); }, function () { return console.log("Finished"); });
     };
     DayComponent = __decorate([
         core_1.Component({

@@ -22,7 +22,7 @@ var LoginComponent = (function () {
     // 登录
     LoginComponent.prototype.onSubmit = function () {
         var _this = this;
-        this.formService.getUser(this.model.username, this.model.password).subscribe(function (user) {
+        this.formService.postUser(this.model.username, this.model.password).subscribe(function (user) {
             console.log('获取JSON内容：' + JSON.stringify(user));
             if (user[0] && user[0].LoginName == _this.model.username) {
                 localStorage.setItem('user', JSON.stringify(user[0]));

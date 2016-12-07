@@ -17,13 +17,46 @@ require('rxjs/add/operator/map');
 var ReportService = (function () {
     function ReportService(http) {
         this.http = http;
-        this.loginUrl = 'http://192.168.0.238:3002/login/';
-        this.getOfficesUrl = 'http://localhost:3002/getOffices';
-        this.getReportFormsUrl = 'http://localhost:3002/getReportForms';
-        this.getSensitivesUrl = 'http://localhost:3002/getSensitives/';
-        this.postFormData = 'http://localhost:3002/postFormData';
+        /**
+         * 服务IP地址
+         * @type {string}
+         */
+        this.serviceIp = 'http://192.168.0.226';
+        /**
+         * 服务端口号码
+         * @type {string}
+         */
+        this.servicePort = ':3002';
+        /**
+         * 登陆(post请求)
+         * @type {string}
+         */
+        this.loginUrl = this.serviceIp + this.servicePort + '/login';
+        /**
+         * 获取所有科室(get请求)
+         * @type {string}
+         */
+        this.getOfficesUrl = this.serviceIp + this.servicePort + '/getOffices';
+        /**
+         * 获取所有上报表单(get请求)
+         * @type {string}
+         */
+        this.getReportFormsUrl = this.serviceIp + this.servicePort + '/getReportForms';
+        /**
+         * 获取敏感词汇(get请求)
+         * @type {string}
+         */
+        this.getSensitivesUrl = this.serviceIp + this.servicePort + '/getSensitives/';
+        /**
+         * 提交敏感词汇上报表(post请求)
+         * @type {string}
+         */
+        this.postFormData = this.serviceIp + this.servicePort + '/postFormData';
     }
-    // 获取所有表单结构数据
+    /**
+     * 获取所有表单结构数据
+     * @returns {Promise<Form[]>}
+     */
     ReportService.prototype.getForms = function () {
         return Promise.resolve(mock_form_1.FORMS);
     };
@@ -33,10 +66,16 @@ var ReportService = (function () {
      * @param password 密码
      * @returns {Observable<R>}
      */
-    ReportService.prototype.getUser = function (username, password) {
-        var url = this.loginUrl + username + "/" + password;
+    ReportService.prototype.postUser = function (username, password) {
+        var url = this.loginUrl;
         console.log("请求地址：" + url);
-        return this.http.get(url).map(function (res) { return res.json(); });
+        var json = JSON.stringify({ 'username': username, 'password': password });
+        var params = 'data=' + json;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this.http.post(url, params, {
+            headers: headers
+        }).map(function (res) { return res.json(); });
     };
     /**
      * 获取所有科室信息
@@ -64,9 +103,9 @@ var ReportService = (function () {
         return this.http.get(url).map(function (res) { return res.json(); });
     };
     /**
-     * 提交一天的上报表
+     * 提交敏感词汇表
      */
-    ReportService.prototype.postSensitives = function () {
+    ReportService.prototype.postSensitives = function (sensitives) {
         // var creds = "username=123" + "&password=123";
         //
         // var headers = new Headers();
@@ -79,12 +118,10 @@ var ReportService = (function () {
         //     err => console.log('error'),
         //     () => console.log('Authentication Complete')
         // );
-        var json = JSON.stringify({ var1: 'test', var2: 3 });
-        var params = 'user=' + json;
+        var json = JSON.stringify(sensitives);
+        var params = 'data=' + json;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        headers.append('Content-Type', 'application/json');
-        headers.append('Content-Type', 'application/json');
         return this.http.post(this.postFormData, params, {
             headers: headers
         }).map(function (res) { return res.json(); });

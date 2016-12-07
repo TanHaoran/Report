@@ -58,12 +58,11 @@ export class DayComponent implements OnInit {
         s.people = ElementUtil.makePositiveInteger(people);
     }
 
+    /**
+     * 提交表单数据
+     */
     onSubmit() {
-
-        for (var i = 0; i < this.sensitives.length; i++) {
-
-        }
-        this.formService.postSensitives().subscribe(
+        this.formService.postSensitives(this.sensitives).subscribe(
             data => console.log(JSON.stringify(data)),
             error => alert(error),
             () => console.log("Finished")

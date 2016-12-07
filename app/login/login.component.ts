@@ -24,7 +24,7 @@ export class LoginComponent {
 
     // 登录
     onSubmit() {
-        this.formService.getUser(this.model.username, this.model.password).subscribe(user => {
+        this.formService.postUser(this.model.username, this.model.password).subscribe(user => {
             console.log('获取JSON内容：' + JSON.stringify(user));
             if (user[0] && user[0].LoginName == this.model.username) {
                 localStorage.setItem('user', JSON.stringify(user[0]));
