@@ -17,7 +17,7 @@ var LoginComponent = (function () {
     function LoginComponent(router, formService) {
         this.router = router;
         this.formService = formService;
-        this.model = new User_1.User(0, '', '', '');
+        this.model = new User_1.User(0, '', '');
     }
     // 登录
     LoginComponent.prototype.onSubmit = function () {

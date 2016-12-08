@@ -18,7 +18,7 @@ import {SystemConfig} from "../util/system.config";
 
 export class HomepageComponent implements OnInit {
 
-    user = new User(0, '', '', '');
+    user = new User(0, '', '');
     today: number = Date.now();
 
     ngOnInit(): void {

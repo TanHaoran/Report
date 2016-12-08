@@ -14,7 +14,7 @@ var system_config_1 = require("../util/system.config");
 // 首页页面
 var HomepageComponent = (function () {
     function HomepageComponent() {
-        this.user = new user_1.User(0, '', '', '');
+        this.user = new user_1.User(0, '', '');
         this.today = Date.now();
     }
     HomepageComponent.prototype.ngOnInit = function () {

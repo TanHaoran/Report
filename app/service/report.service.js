@@ -38,6 +38,11 @@ var ReportService = (function () {
          */
         this.getOfficesUrl = this.serviceIp + this.servicePort + '/getOffices';
         /**
+         * 注册(post请求)
+         * @type {string}
+         */
+        this.registerUrl = this.serviceIp + this.servicePort + '/register';
+        /**
          * 获取所有上报表单(get请求)
          * @type {string}
          */
@@ -86,6 +91,27 @@ var ReportService = (function () {
         return this.http.get(this.getOfficesUrl).map(function (res) { return res.json(); });
     };
     /**
+     * 用户进行注册
+     * @param username
+     * @param password
+     * @param officeName
+     */
+    ReportService.prototype.postRegister = function (username, password) {
+        var url = this.registerUrl;
+        console.log("请求地址：" + url);
+        // 拼凑json字串
+        var json = JSON.stringify({
+            'username': username,
+            'password': password
+        });
+        var params = 'data=' + json;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this.http.post(url, params, {
+            headers: headers
+        }).map(function (res) { return res.json(); });
+    };
+    /**
      * 获取所有上报表信息
      * @returns {Observable<R>}
      */
@@ -104,22 +130,14 @@ var ReportService = (function () {
     };
     /**
      * 提交敏感词汇表
+     * @param officeId 上报科室
+     * @param operatorId 上报人员
+     * @param sensitives 数据内容
+     * @returns {Observable<R>}
      */
-    ReportService.prototype.postSensitives = function (sensitives) {
-        // var creds = "username=123" + "&password=123";
-        //
-        // var headers = new Headers();
-        // headers.append('Content-Type', 'application/json');
-        //
-        // this.http.post(this.postFormData, creds, {
-        //     headers: headers
-        // }).map(res => res.json()).subscribe(
-        //     data => console.log(data),
-        //     err => console.log('error'),
-        //     () => console.log('Authentication Complete')
-        // );
+    ReportService.prototype.postSensitives = function (officeId, operatorId, sensitives) {
         var json = JSON.stringify(sensitives);
-        var params = 'data=' + json;
+        var params = 'officeId=' + officeId + '&operatorId=' + operatorId + '&data=' + json;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post(this.postFormData, params, {

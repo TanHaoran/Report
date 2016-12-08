@@ -8,6 +8,7 @@ import {SystemConfig} from "../util/system.config";
 import {ReportForm} from "../entity/report-form";
 import {ElementUtil} from "../util/element-util";
 import {JsonUtil} from "../util/json-util";
+import {Office} from "../entity/office";
 
 
 // 每日汇报页面
@@ -28,6 +29,10 @@ export class DayComponent implements OnInit {
     // 敏感词汇结构
     sensitives = [];
 
+    offices: Office[] = [];
+    // 所选择的科室
+    officeName: string;
+
     constructor(private router: Router, private formService: ReportService) {
 
     }
@@ -35,6 +40,22 @@ export class DayComponent implements OnInit {
     ngOnInit(): void {
         // 读取所有上报表
         this.reportForms = SystemConfig.getReportForms();
+        this.formService.getOffices().subscribe(offices => {
+            console.log('获取JSON内容：' + JSON.stringify(offices));
+            for (var i = 0; i < offices.length; i++) {
+                var office = new Office();
+                office.id = offices[i].OfficeID;
+                office.name = offices[i].OfficeName;
+                this.offices.push(office);
+            }
+
+            // 初始化默认选择科室
+            if (offices.length > 0) {
+                this.officeName = offices[0].OfficeName;
+            } else {
+                this.officeName = '';
+            }
+        });
     }
 
     // 当选择一个左侧报表的类型
@@ -62,7 +83,9 @@ export class DayComponent implements OnInit {
      * 提交表单数据
      */
     onSubmit() {
-        this.formService.postSensitives(this.sensitives).subscribe(
+        // 先获取科室id
+        var officeId = JsonUtil.getOfficeId(this.officeName, this.offices);
+        this.formService.postSensitives(officeId, SystemConfig.getUserId(), this.sensitives).subscribe(
             data => console.log(JSON.stringify(data)),
             error => alert(error),
             () => console.log("Finished")

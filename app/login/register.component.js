@@ -17,21 +17,18 @@ var RegisterComponent = (function () {
     function RegisterComponent(router, formService) {
         this.router = router;
         this.formService = formService;
-        this.model = new User_1.User(0, '', '', '');
-        this.officeNames = [];
+        this.model = new User_1.User(0, '', '');
     }
-    RegisterComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.formService.getOffices().subscribe(function (offices) {
-            console.log('获取JSON内容：' + JSON.stringify(offices));
-            for (var i = 0; i < offices.length; i++) {
-                _this.officeNames[i] = offices[i].OfficeName;
-            }
-        });
-    };
     // 注册
     RegisterComponent.prototype.onSubmit = function () {
-        this.router.navigateByUrl('/login');
+        var _this = this;
+        this.formService.postRegister(this.model.username, this.model.password).subscribe(function (data) {
+            console.log('获取JSON内容：' + data);
+            alert(data);
+            if (data == '注册成功') {
+                _this.router.navigateByUrl('/login');
+            }
+        });
     };
     RegisterComponent = __decorate([
         core_1.Component({

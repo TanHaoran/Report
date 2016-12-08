@@ -16,6 +16,15 @@ var SystemConfig = (function () {
         return username;
     };
     /**
+     * 获取登陆用户id
+     * @returns {any}
+     */
+    SystemConfig.getUserId = function () {
+        var json = localStorage.getItem('user');
+        var userId = JSON.parse(json).OperatorID;
+        return userId;
+    };
+    /**
      * 获取所有上报表信息
      * @returns {any}
      */

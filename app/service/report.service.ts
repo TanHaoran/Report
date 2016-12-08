@@ -33,6 +33,13 @@ export class ReportService {
      * @type {string}
      */
     private getOfficesUrl = this.serviceIp + this.servicePort + '/getOffices';
+
+    /**
+     * 注册(post请求)
+     * @type {string}
+     */
+    private registerUrl = this.serviceIp + this.servicePort + '/register';
+
     /**
      * 获取所有上报表单(get请求)
      * @type {string}
@@ -90,6 +97,28 @@ export class ReportService {
     }
 
     /**
+     * 用户进行注册
+     * @param username
+     * @param password
+     * @param officeName
+     */
+    postRegister(username: string, password: string) {
+        var url = this.registerUrl;
+        console.log("请求地址：" + url);
+        // 拼凑json字串
+        var json = JSON.stringify({
+            'username': username,
+            'password': password
+        });
+        var params = 'data=' + json;
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        return this.http.post(url, params, {
+            headers: headers
+        }).map(res => res.json());
+    }
+
+    /**
      * 获取所有上报表信息
      * @returns {Observable<R>}
      */
@@ -110,25 +139,14 @@ export class ReportService {
 
     /**
      * 提交敏感词汇表
+     * @param officeId 上报科室
+     * @param operatorId 上报人员
+     * @param sensitives 数据内容
+     * @returns {Observable<R>}
      */
-    postSensitives(sensitives: Sensitive[]) {
-
-        // var creds = "username=123" + "&password=123";
-        //
-        // var headers = new Headers();
-        // headers.append('Content-Type', 'application/json');
-        //
-        // this.http.post(this.postFormData, creds, {
-        //     headers: headers
-        // }).map(res => res.json()).subscribe(
-        //     data => console.log(data),
-        //     err => console.log('error'),
-        //     () => console.log('Authentication Complete')
-        // );
-
-
+    postSensitives(officeId: number, operatorId: string, sensitives: Sensitive[]) {
         var json = JSON.stringify(sensitives);
-        var params = 'data=' + json;
+        var params = 'officeId=' + officeId + '&operatorId=' + operatorId + '&data=' + json;
         var headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post(this.postFormData, params, {

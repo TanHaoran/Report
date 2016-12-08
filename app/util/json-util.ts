@@ -1,10 +1,11 @@
 import {Sensitive} from "../entity/sensitive";
+import {Office} from "../entity/office";
 /**
  * Created by Jerry on 2016/11/28.
  */
 
 
-export  class JsonUtil {
+export class JsonUtil {
 
     /**
      * 将Json转换成敏感词汇
@@ -38,5 +39,19 @@ export  class JsonUtil {
             }
         }
         return sensitiveArray;
+    }
+
+    /**
+     * 通过科室名称获取科室id
+     * @param offices
+     * @param officeName
+     */
+    static getOfficeId(officeName: string, offices: Office[]): number {
+        for(var i = 0; i < offices.length; i++) {
+            if (offices[i].name == officeName) {
+                return i;
+            }
+        }
+        return 0;
     }
 }

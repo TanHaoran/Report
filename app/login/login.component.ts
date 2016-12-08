@@ -15,7 +15,7 @@ import {ReportService} from "../service/report.service";
 
 export class LoginComponent {
 
-    model = new User(0, '', '', '');
+    model = new User(0, '', '');
 
 
     constructor(private router: Router, private formService: ReportService) {

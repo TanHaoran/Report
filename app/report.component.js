@@ -16,10 +16,10 @@ var report_service_1 = require("./service/report.service");
 var ReportComponent = (function () {
     function ReportComponent(reportService) {
         this.reportService = reportService;
-        this.user = new user_1.User(0, '', '', '');
+        this.user = new user_1.User(0, '', '');
     }
     ReportComponent.prototype.ngOnInit = function () {
-        this.user = new user_1.User(0, '', '', '');
+        this.user = new user_1.User(0, '', '');
         this.user.username = system_config_1.SystemConfig.getUsername();
         // 读取所有表结构
         this.reportService.getReportForm().subscribe(function (reportForms) {

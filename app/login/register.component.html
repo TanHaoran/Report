@@ -26,12 +26,12 @@
 		</div>
 
 		<!--科室-->
-		<div class="form-group">
-			<label for="office">选择科室</label>
-			<select class="form-control" id="office" required [(ngModel)]="model.office" name="office">
-				<option *ngFor="let o of officeNames" [value]="o">{{o}}</option>
-			</select>
-		</div>
+		<!--<div class="form-group">-->
+			<!--<label for="office">选择科室</label>-->
+			<!--<select class="form-control" id="office" required [(ngModel)]="model.officeName" name="office">-->
+				<!--<option *ngFor="let o of officeNames" [value]="o">{{o}}</option>-->
+			<!--</select>-->
+		<!--</div>-->
 
 		<!--注册-->
 		<button type="submit" class="btn btn-default"  [disabled]="!reportForm.form.valid">注册</button> 

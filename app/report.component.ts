@@ -15,14 +15,14 @@ import {ReportForm} from "./entity/report-form";
 
 export class ReportComponent implements OnInit {
 
-    user: User = new User(0, '', '', '');
+    user: User = new User(0, '', '');
 
     constructor(private reportService: ReportService) {
 
     }
 
     ngOnInit(): void {
-        this.user = new User(0, '', '', '');
+        this.user = new User(0, '', '');
         this.user.username = SystemConfig.getUsername();
 
         // 读取所有表结构

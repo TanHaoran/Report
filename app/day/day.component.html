@@ -12,6 +12,14 @@
             <div class="form-title"><h2>{{selectedForm.name}}</h2></div>
             <div class="form-line"></div>
             <table>
+                <tr class="form-row">
+                    <td class="form-col-title">上报科室</td>
+                    <td>
+                        <select class="form-control" id="office" name="office" [(ngModel)]="officeName">
+                            <option *ngFor="let o of offices">{{o.name}}</option>
+                        </select>
+                    </td>
+                </tr>
                 <!--表内容-->
                 <tr class="form-row" *ngFor="let s of sensitives">
 

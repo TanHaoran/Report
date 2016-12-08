@@ -14,6 +14,7 @@ var report_service_1 = require('../service/report.service');
 var system_config_1 = require("../util/system.config");
 var element_util_1 = require("../util/element-util");
 var json_util_1 = require("../util/json-util");
+var office_1 = require("../entity/office");
 // 每日汇报页面
 var DayComponent = (function () {
     function DayComponent(router, formService) {
@@ -21,10 +22,28 @@ var DayComponent = (function () {
         this.formService = formService;
         // 敏感词汇结构
         this.sensitives = [];
+        this.offices = [];
     }
     DayComponent.prototype.ngOnInit = function () {
+        var _this = this;
         // 读取所有上报表
         this.reportForms = system_config_1.SystemConfig.getReportForms();
+        this.formService.getOffices().subscribe(function (offices) {
+            console.log('获取JSON内容：' + JSON.stringify(offices));
+            for (var i = 0; i < offices.length; i++) {
+                var office = new office_1.Office();
+                office.id = offices[i].OfficeID;
+                office.name = offices[i].OfficeName;
+                _this.offices.push(office);
+            }
+            // 初始化默认选择科室
+            if (offices.length > 0) {
+                _this.officeName = offices[0].OfficeName;
+            }
+            else {
+                _this.officeName = '';
+            }
+        });
     };
     // 当选择一个左侧报表的类型
     DayComponent.prototype.onSelect = function (rf) {
@@ -49,7 +68,9 @@ var DayComponent = (function () {
      * 提交表单数据
      */
     DayComponent.prototype.onSubmit = function () {
-        this.formService.postSensitives(this.sensitives).subscribe(function (data) { return console.log(JSON.stringify(data)); }, function (error) { return alert(error); }, function () { return console.log("Finished"); });
+        // 先获取科室id
+        var officeId = json_util_1.JsonUtil.getOfficeId(this.officeName, this.offices);
+        this.formService.postSensitives(officeId, system_config_1.SystemConfig.getUserId(), this.sensitives).subscribe(function (data) { return console.log(JSON.stringify(data)); }, function (error) { return alert(error); }, function () { return console.log("Finished"); });
     };
     DayComponent = __decorate([
         core_1.Component({
