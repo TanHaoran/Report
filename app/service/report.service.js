@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var mock_form_1 = require('./mock-form');
 var http_1 = require("@angular/http");
 require('rxjs/add/operator/toPromise');
 require('rxjs/add/operator/map');
@@ -53,18 +52,16 @@ var ReportService = (function () {
          */
         this.getSensitivesUrl = this.serviceIp + this.servicePort + '/getSensitives/';
         /**
+         * 获取已保存的记录
+         * @type {string}
+         */
+        this.getFormDataUrl = this.serviceIp + this.servicePort + '/getFormData/';
+        /**
          * 提交敏感词汇上报表(post请求)
          * @type {string}
          */
         this.postFormData = this.serviceIp + this.servicePort + '/postFormData';
     }
-    /**
-     * 获取所有表单结构数据
-     * @returns {Promise<Form[]>}
-     */
-    ReportService.prototype.getForms = function () {
-        return Promise.resolve(mock_form_1.FORMS);
-    };
     /**
      * 发送用户名和密码到服务端验证登陆
      * @param username 用户名
@@ -129,15 +126,28 @@ var ReportService = (function () {
         return this.http.get(url).map(function (res) { return res.json(); });
     };
     /**
+     * 获取已保存的记录
+     * @param officeId 科室id
+     * @param date 上报日期
+     * @returns {Observable<R>}
+     */
+    ReportService.prototype.getSensitiveData = function (officeId, date) {
+        // 替换斜杠为连词符
+        date = date.split('/').join('-');
+        var url = this.getFormDataUrl + officeId + "/" + date;
+        console.log("请求地址：" + url);
+        return this.http.get(url).map(function (res) { return res.json(); });
+    };
+    /**
      * 提交敏感词汇表
      * @param officeId 上报科室
      * @param operatorId 上报人员
      * @param sensitives 数据内容
      * @returns {Observable<R>}
      */
-    ReportService.prototype.postSensitives = function (officeId, operatorId, sensitives) {
+    ReportService.prototype.postSensitiveData = function (officeId, operatorId, date, sensitives) {
         var json = JSON.stringify(sensitives);
-        var params = 'officeId=' + officeId + '&operatorId=' + operatorId + '&data=' + json;
+        var params = 'officeId=' + officeId + '&operatorId=' + operatorId + '&date=' + date + '&data=' + json;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post(this.postFormData, params, {

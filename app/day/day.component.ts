@@ -1,7 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
 
-import {Router} from '@angular/router';
-
 import {ReportService} from '../service/report.service';
 import {Sensitive} from "../entity/sensitive";
 import {SystemConfig} from "../util/system.config";
@@ -33,7 +31,10 @@ export class DayComponent implements OnInit {
     // 所选择的科室
     officeName: string;
 
-    constructor(private router: Router, private formService: ReportService) {
+    // 用来在界面上显示当天的日期
+    today: string = new Date().toLocaleDateString();
+
+    constructor(private formService: ReportService) {
 
     }
 
@@ -58,14 +59,48 @@ export class DayComponent implements OnInit {
         });
     }
 
-    // 当选择一个左侧报表的类型
-    onSelect(rf: ReportForm): void {
+    /**
+     * 当选择一个左侧报表的类型
+     * @param rf
+     */
+    onSelectForm(rf: ReportForm): void {
         this.selectedForm = rf;
         // 读取敏感词汇表结构
         this.formService.getSensitives(rf.id).subscribe(sensitives => {
             console.log('获取JSON内容：' + JSON.stringify(sensitives));
             // 将Json转换成敏感词汇
             this.sensitives = JsonUtil.parseJsonToSensitive(sensitives);
+            // 先获取科室id
+            var officeId = JsonUtil.getOfficeId(this.officeName, this.offices);
+            // 更新右侧显示信息
+            this.updateSensitiveData(officeId, this.today);
+        });
+    }
+
+    /**
+     * 在更换选择科室之后更新数据
+     */
+    onSelectOffice(officeName: string): void {
+        // 先获取科室id
+        var officeId = JsonUtil.getOfficeId(officeName, this.offices);
+        // 更新右侧显示信息
+        this.updateSensitiveData(officeId, this.today);
+    }
+
+    /**
+     * 更新右侧显示信息
+     */
+    private updateSensitiveData(officeId: number, date: string) {
+        this.formService.getSensitiveData(officeId, date).subscribe(sensitiveData => {
+            console.log(sensitiveData);
+            var jsonArray = JSON.parse(sensitiveData);
+            if (jsonArray.length > 0) {
+                // 将读取出来的人数数据显示在界面上
+                this.sensitives = JsonUtil.addPeopleToSensitive(jsonArray, this.sensitives);
+            } else {
+                this.sensitives = JsonUtil.setEmptyPepleToSensitive(this.sensitives);
+            }
+
         });
     }
 
@@ -85,13 +120,10 @@ export class DayComponent implements OnInit {
     onSubmit() {
         // 先获取科室id
         var officeId = JsonUtil.getOfficeId(this.officeName, this.offices);
-        this.formService.postSensitives(officeId, SystemConfig.getUserId(), this.sensitives).subscribe(
+        this.formService.postSensitiveData(officeId, SystemConfig.getUserId(), this.today, this.sensitives).subscribe(
             data => console.log(JSON.stringify(data)),
             error => alert(error),
             () => console.log("Finished")
         );
     }
-
-
 }
-

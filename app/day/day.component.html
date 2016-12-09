@@ -1,6 +1,6 @@
 <div class="menu">
     <ul class="heroes">
-        <li *ngFor="let rf of reportForms" [class.selected]="rf === selectedForm" (click)="onSelect(rf)">
+        <li *ngFor="let rf of reportForms" [class.selected]="rf === selectedForm" (click)="onSelectForm(rf)">
             <span class="badge">{{rf.index}}</span>{{rf.name}}
         </li>
     </ul>
@@ -12,21 +12,31 @@
             <div class="form-title"><h2>{{selectedForm.name}}</h2></div>
             <div class="form-line"></div>
             <table>
+                <!--上报时间-->
                 <tr class="form-row">
-                    <td class="form-col-title">上报科室</td>
+                    <td class="form-col-title">上报时间</td>
+                    <td>{{today}}</td>
+                </tr>
+
+                <!--上报科室-->
+                <tr class="form-row">
+                    <td class="form-col-title">上报科室{{officeName}}</td>
                     <td>
-                        <select class="form-control" id="office" name="office" [(ngModel)]="officeName">
+                        <select class="form-control" id="office" name="office" [(ngModel)]="officeName"
+                                (change)="onSelectOffice($event.target.value)">
                             <option *ngFor="let o of offices">{{o.name}}</option>
                         </select>
                     </td>
                 </tr>
+
                 <!--表内容-->
                 <tr class="form-row" *ngFor="let s of sensitives">
 
                     <td class="form-col-title"><span *ngIf="s.parentName">{{s.parentName}}（</span>{{s.name}}<span
                             *ngIf="s.parentName">）</span></td>
                     <td>
-                        <input #people (keyup)="onlyNumber(s, people)" class="form-control" type="number" name="">
+                        <input #people (keyup)="onlyNumber(s, people)" class="form-control" type="number"
+                               value={{s.people}}>
                     </td>
 
                 </tr>

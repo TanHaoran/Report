@@ -47,11 +47,41 @@ export class JsonUtil {
      * @param officeName
      */
     static getOfficeId(officeName: string, offices: Office[]): number {
-        for(var i = 0; i < offices.length; i++) {
+        for (var i = 0; i < offices.length; i++) {
             if (offices[i].name == officeName) {
-                return i;
+                return offices[i].id;
             }
         }
         return 0;
+    }
+
+    /**
+     * 将读取到的人数数据添加到集合中
+     * @param sensitiveDataJson
+     * @param sensitives
+     * @returns {Sensitive[]}
+     */
+    static addPeopleToSensitive(sensitiveDataJson, sensitives: Sensitive[]): Sensitive[] {
+        for (var i = 0; i < sensitiveDataJson.length; i++) {
+            var sensitiveId = sensitiveDataJson[i].SensitiveId;
+            for (var j = 0; j < sensitives.length; j++) {
+                if (sensitiveId == sensitives[j].sensitiveId) {
+                    sensitives[j].people = sensitiveDataJson[i].People;
+                }
+            }
+        }
+        return sensitives;
+    }
+
+    /**
+     * 将全部数据设置为0
+     * @param sensitives
+     * @returns {Sensitive[]}
+     */
+    static setEmptyPepleToSensitive(sensitives: Sensitive[]): Sensitive[] {
+        for (var i = 0; i < sensitives.length; i++) {
+            sensitives[i].people = 0;
+        }
+        return sensitives;
     }
 }

@@ -50,6 +50,13 @@ export class ReportService {
      * @type {string}
      */
     private getSensitivesUrl = this.serviceIp + this.servicePort + '/getSensitives/';
+
+    /**
+     * 获取已保存的记录
+     * @type {string}
+     */
+    private getFormDataUrl = this.serviceIp + this.servicePort + '/getFormData/';
+
     /**
      * 提交敏感词汇上报表(post请求)
      * @type {string}
@@ -58,14 +65,6 @@ export class ReportService {
 
     constructor(private http: Http) {
 
-    }
-
-    /**
-     * 获取所有表单结构数据
-     * @returns {Promise<Form[]>}
-     */
-    getForms(): Promise<Form[]> {
-        return Promise.resolve(FORMS);
     }
 
     /**
@@ -138,20 +137,33 @@ export class ReportService {
     }
 
     /**
+     * 获取已保存的记录
+     * @param officeId 科室id
+     * @param date 上报日期
+     * @returns {Observable<R>}
+     */
+    getSensitiveData(officeId: number, date: string) {
+        // 替换斜杠为连词符
+        date = date.split('/').join('-');
+        var url = this.getFormDataUrl + officeId + "/" + date;
+        console.log("请求地址：" + url);
+        return this.http.get(url).map(res => res.json());
+    }
+
+    /**
      * 提交敏感词汇表
      * @param officeId 上报科室
      * @param operatorId 上报人员
      * @param sensitives 数据内容
      * @returns {Observable<R>}
      */
-    postSensitives(officeId: number, operatorId: string, sensitives: Sensitive[]) {
+    postSensitiveData(officeId: number, operatorId: string, date: string, sensitives: Sensitive[]) {
         var json = JSON.stringify(sensitives);
-        var params = 'officeId=' + officeId + '&operatorId=' + operatorId + '&data=' + json;
+        var params = 'officeId=' + officeId + '&operatorId=' + operatorId + '&date=' + date + '&data=' + json;
         var headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
         return this.http.post(this.postFormData, params, {
             headers: headers
         }).map(res => res.json());
-
     }
 }
