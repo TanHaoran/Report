@@ -20,6 +20,7 @@ var DayComponent = (function () {
         this.formService = formService;
         // 敏感词汇结构
         this.sensitives = [];
+        // 所有科室集合
         this.offices = [];
         // 用来在界面上显示当天的日期
         this.today = new Date().toLocaleDateString();
@@ -74,6 +75,8 @@ var DayComponent = (function () {
     };
     /**
      * 更新右侧显示信息
+     * @param officeId 科室id
+     * @param date 查询日期
      */
     DayComponent.prototype.updateSensitiveData = function (officeId, date) {
         var _this = this;
@@ -103,7 +106,12 @@ var DayComponent = (function () {
     DayComponent.prototype.onSubmit = function () {
         // 先获取科室id
         var officeId = json_util_1.JsonUtil.getOfficeId(this.officeName, this.offices);
-        this.formService.postSensitiveData(officeId, system_config_1.SystemConfig.getUserId(), this.today, this.sensitives).subscribe(function (data) { return console.log(JSON.stringify(data)); }, function (error) { return alert(error); }, function () { return console.log("Finished"); });
+        this.formService.postSensitiveData(officeId, system_config_1.SystemConfig.getUserId(), this.today, this.sensitives).subscribe(function (data) {
+            console.log(JSON.stringify(data));
+            alert(JSON.stringify(data));
+        }, function (error) { return alert(error); }, function () {
+            console.log("Finished");
+        });
     };
     DayComponent = __decorate([
         core_1.Component({

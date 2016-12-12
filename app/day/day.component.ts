@@ -7,6 +7,7 @@ import {ReportForm} from "../entity/report-form";
 import {ElementUtil} from "../util/element-util";
 import {JsonUtil} from "../util/json-util";
 import {Office} from "../entity/office";
+import {isNumber} from "util";
 
 
 // 每日汇报页面
@@ -27,6 +28,7 @@ export class DayComponent implements OnInit {
     // 敏感词汇结构
     sensitives = [];
 
+    // 所有科室集合
     offices: Office[] = [];
     // 所选择的科室
     officeName: string;
@@ -89,6 +91,8 @@ export class DayComponent implements OnInit {
 
     /**
      * 更新右侧显示信息
+     * @param officeId 科室id
+     * @param date 查询日期
      */
     private updateSensitiveData(officeId: number, date: string) {
         this.formService.getSensitiveData(officeId, date).subscribe(sensitiveData => {
@@ -100,7 +104,6 @@ export class DayComponent implements OnInit {
             } else {
                 this.sensitives = JsonUtil.setEmptyPepleToSensitive(this.sensitives);
             }
-
         });
     }
 
@@ -121,9 +124,14 @@ export class DayComponent implements OnInit {
         // 先获取科室id
         var officeId = JsonUtil.getOfficeId(this.officeName, this.offices);
         this.formService.postSensitiveData(officeId, SystemConfig.getUserId(), this.today, this.sensitives).subscribe(
-            data => console.log(JSON.stringify(data)),
+            data => {
+                console.log(JSON.stringify(data));
+                alert(JSON.stringify(data));
+            },
             error => alert(error),
-            () => console.log("Finished")
+            () => {
+                console.log("Finished");
+            }
         );
     }
 }

@@ -43,8 +43,8 @@ export class JsonUtil {
 
     /**
      * 通过科室名称获取科室id
-     * @param offices
      * @param officeName
+     * @param offices
      */
     static getOfficeId(officeName: string, offices: Office[]): number {
         for (var i = 0; i < offices.length; i++) {
@@ -56,6 +56,20 @@ export class JsonUtil {
     }
 
     /**
+     * 通过科室id获取科室名称
+     * @param officeId
+     * @param offices
+     */
+    static getOfficeName(officeId: number, offices: Office[]): string {
+        for (var i = 0; i < offices.length; i++) {
+            if (offices[i].id == officeId) {
+                return offices[i].name;
+            }
+        }
+        return '';
+    }
+
+    /**
      * 将读取到的人数数据添加到集合中
      * @param sensitiveDataJson
      * @param sensitives
@@ -64,7 +78,8 @@ export class JsonUtil {
     static addPeopleToSensitive(sensitiveDataJson, sensitives: Sensitive[]): Sensitive[] {
         for (var i = 0; i < sensitiveDataJson.length; i++) {
             var sensitiveId = sensitiveDataJson[i].SensitiveId;
-            for (var j = 0; j < sensitives.length; j++) {
+            var j = 0;
+            for (j = 0; j < sensitives.length; j++) {
                 if (sensitiveId == sensitives[j].sensitiveId) {
                     sensitives[j].people = sensitiveDataJson[i].People;
                 }

@@ -12,16 +12,36 @@ var core_1 = require('@angular/core');
 var report_service_1 = require('../service/report.service');
 var system_config_1 = require("../util/system.config");
 var json_util_1 = require("../util/json-util");
+var office_1 = require("../entity/office");
 // 每月汇总页面
 var MonthComponent = (function () {
     function MonthComponent(formService) {
         this.formService = formService;
         // 敏感词汇结构
         this.sensitives = [];
+        // 所有科室集合
+        this.offices = [];
     }
     MonthComponent.prototype.ngOnInit = function () {
+        var _this = this;
         // 读取所有上报表
         this.reportForms = system_config_1.SystemConfig.getReportForms();
+        this.formService.getOffices().subscribe(function (offices) {
+            console.log('获取JSON内容：' + JSON.stringify(offices));
+            for (var i = 0; i < offices.length; i++) {
+                var office = new office_1.Office();
+                office.id = offices[i].OfficeID;
+                office.name = offices[i].OfficeName;
+                _this.offices.push(office);
+            }
+            // 初始化默认选择科室
+            if (offices.length > 0) {
+                _this.officeName = offices[0].OfficeName;
+            }
+            else {
+                _this.officeName = '';
+            }
+        });
     };
     // 当选择一个左侧报表的类型
     MonthComponent.prototype.onSelect = function (rf) {

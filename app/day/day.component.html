@@ -20,10 +20,10 @@
 
                 <!--上报科室-->
                 <tr class="form-row">
-                    <td class="form-col-title">上报科室{{officeName}}</td>
+                    <td class="form-col-title">上报科室</td>
                     <td>
                         <select class="form-control" id="office" name="office" [(ngModel)]="officeName"
-                                (change)="onSelectOffice($event.target.value)">
+                                (ngModelChange)="onSelectOffice(officeName)">
                             <option *ngFor="let o of offices">{{o.name}}</option>
                         </select>
                     </td>

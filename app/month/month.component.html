@@ -9,11 +9,24 @@
 <div class="month-content">
     <div *ngIf="selectedForm">
         <div class="month-title">{{selectedForm.name}}汇总</div>
-        <form class="month-form">
-            <tr class="month-form-row">
-                <td class="month-form-number-col">序号</td>
-                <td *ngFor="let s of sensitives" class="month-form-number-col">{{s.name}}</td>
-            </tr>
-        </form>
+
+        <div class="show-table">
+            <!--选择科室-->
+            <div class="select-office-text">选择科室</div>
+            <div class="select-office">
+                <select class="form-control" id="office" name="office" [(ngModel)]="officeName"
+                        (ngModelChange)="onSelectOffice(officeName)">
+                    <option *ngFor="let o of offices">{{o.name}}</option>
+                </select>
+            </div>
+
+            <form class="month-form">
+
+                <tr class="month-form-row">
+                    <td class="month-form-number-col">序号</td>
+                    <td *ngFor="let s of sensitives" class="month-form-number-col">{{s.name}}</td>
+                </tr>
+            </form>
+        </div>
     </div>
 </div>

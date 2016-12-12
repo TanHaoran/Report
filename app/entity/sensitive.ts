@@ -34,5 +34,5 @@ export class Sensitive {
     /**
      * 人数
      */
-    public people: number;
+    public people: number = 0;
 }

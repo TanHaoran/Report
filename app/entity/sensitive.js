@@ -7,6 +7,10 @@
  */
 var Sensitive = (function () {
     function Sensitive() {
+        /**
+         * 人数
+         */
+        this.people = 0;
     }
     return Sensitive;
 }());
