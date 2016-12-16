@@ -35,4 +35,8 @@ export class Sensitive {
      * 人数
      */
     public people: number = 0;
+    /**
+     * 当月的哪一天
+     */
+    public day:number;
 }

@@ -66,17 +66,19 @@ export class DayComponent implements OnInit {
      * @param rf
      */
     onSelectForm(rf: ReportForm): void {
-        this.selectedForm = rf;
-        // 读取敏感词汇表结构
-        this.formService.getSensitives(rf.id).subscribe(sensitives => {
-            console.log('获取JSON内容：' + JSON.stringify(sensitives));
-            // 将Json转换成敏感词汇
-            this.sensitives = JsonUtil.parseJsonToSensitive(sensitives);
-            // 先获取科室id
-            var officeId = JsonUtil.getOfficeId(this.officeName, this.offices);
-            // 更新右侧显示信息
-            this.updateSensitiveData(officeId, this.today);
-        });
+        if (this.selectedForm != rf) {
+            this.selectedForm = rf;
+            // 读取敏感词汇表结构
+            this.formService.getSensitives(rf.id).subscribe(sensitives => {
+                console.log('获取JSON内容：' + JSON.stringify(sensitives));
+                // 将Json转换成敏感词汇
+                this.sensitives = JsonUtil.parseJsonToSensitive(sensitives);
+                // 先获取科室id
+                var officeId = JsonUtil.getOfficeId(this.officeName, this.offices);
+                // 更新右侧显示信息
+                this.updateSensitiveData(officeId, this.today);
+            });
+        }
     }
 
     /**
@@ -97,12 +99,12 @@ export class DayComponent implements OnInit {
     private updateSensitiveData(officeId: number, date: string) {
         this.formService.getSensitiveData(officeId, date).subscribe(sensitiveData => {
             console.log(sensitiveData);
-            var jsonArray = JSON.parse(sensitiveData);
-            if (jsonArray.length > 0) {
+            if (sensitiveData.length > 0) {
+                var json = JSON.parse(sensitiveData);
                 // 将读取出来的人数数据显示在界面上
-                this.sensitives = JsonUtil.addPeopleToSensitive(jsonArray, this.sensitives);
+                this.sensitives = JsonUtil.addPeopleToSensitive(date, json, this.sensitives);
             } else {
-                this.sensitives = JsonUtil.setEmptyPepleToSensitive(this.sensitives);
+                this.sensitives = JsonUtil.setEmptyPeopleToSensitive(date, this.sensitives);
             }
         });
     }

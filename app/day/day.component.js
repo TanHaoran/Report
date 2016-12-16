@@ -52,17 +52,19 @@ var DayComponent = (function () {
      */
     DayComponent.prototype.onSelectForm = function (rf) {
         var _this = this;
-        this.selectedForm = rf;
-        // 读取敏感词汇表结构
-        this.formService.getSensitives(rf.id).subscribe(function (sensitives) {
-            console.log('获取JSON内容：' + JSON.stringify(sensitives));
-            // 将Json转换成敏感词汇
-            _this.sensitives = json_util_1.JsonUtil.parseJsonToSensitive(sensitives);
-            // 先获取科室id
-            var officeId = json_util_1.JsonUtil.getOfficeId(_this.officeName, _this.offices);
-            // 更新右侧显示信息
-            _this.updateSensitiveData(officeId, _this.today);
-        });
+        if (this.selectedForm != rf) {
+            this.selectedForm = rf;
+            // 读取敏感词汇表结构
+            this.formService.getSensitives(rf.id).subscribe(function (sensitives) {
+                console.log('获取JSON内容：' + JSON.stringify(sensitives));
+                // 将Json转换成敏感词汇
+                _this.sensitives = json_util_1.JsonUtil.parseJsonToSensitive(sensitives);
+                // 先获取科室id
+                var officeId = json_util_1.JsonUtil.getOfficeId(_this.officeName, _this.offices);
+                // 更新右侧显示信息
+                _this.updateSensitiveData(officeId, _this.today);
+            });
+        }
     };
     /**
      * 在更换选择科室之后更新数据
@@ -82,13 +84,13 @@ var DayComponent = (function () {
         var _this = this;
         this.formService.getSensitiveData(officeId, date).subscribe(function (sensitiveData) {
             console.log(sensitiveData);
-            var jsonArray = JSON.parse(sensitiveData);
-            if (jsonArray.length > 0) {
+            if (sensitiveData.length > 0) {
+                var json = JSON.parse(sensitiveData);
                 // 将读取出来的人数数据显示在界面上
-                _this.sensitives = json_util_1.JsonUtil.addPeopleToSensitive(jsonArray, _this.sensitives);
+                _this.sensitives = json_util_1.JsonUtil.addPeopleToSensitive(date, json, _this.sensitives);
             }
             else {
-                _this.sensitives = json_util_1.JsonUtil.setEmptyPepleToSensitive(_this.sensitives);
+                _this.sensitives = json_util_1.JsonUtil.setEmptyPeopleToSensitive(date, _this.sensitives);
             }
         });
     };

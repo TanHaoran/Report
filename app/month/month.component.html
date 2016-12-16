@@ -1,14 +1,14 @@
 <div class="menu">
     <ul class="heroes">
         <li *ngFor="let rf of reportForms" [class.selected]="rf === selectedForm" (click)="onSelect(rf)">
-            <span class="badge">{{rf.index}}</span>{{rf.name}}汇总
+            <span class="badge">{{rf.index}}</span>{{rf.name}}
         </li>
     </ul>
 </div>
 
 <div class="month-content">
     <div *ngIf="selectedForm">
-        <div class="month-title">{{selectedForm.name}}汇总</div>
+        <div class="month-title">{{selectedForm.name}}当月汇总</div>
 
         <div class="show-table">
             <!--选择科室-->
@@ -21,10 +21,15 @@
             </div>
 
             <form class="month-form">
-
                 <tr class="month-form-row">
-                    <td class="month-form-number-col">序号</td>
+                    <td class="month-form-number-col">日</td>
                     <td *ngFor="let s of sensitives" class="month-form-number-col">{{s.name}}</td>
+                </tr>
+                <tr class="month-form-row" *ngFor="let ms of monthSensitives">
+                    <td class="month-form-number-col">{{ms[0].day}}</td>
+                    <td *ngFor="let s of ms" class="month-form-number-col">
+                        {{s.people}}
+                    </td>
                 </tr>
             </form>
         </div>
